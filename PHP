@@ -79,5 +79,88 @@ Tax (10%): Rs. 45.00
 Total Cost: Rs. 495.00
 === Code Execution Successful ===
 
+6)
+<?php
+session_start();
+$_SESSION['username'] = "Monika";
+setcookie("user", "Monika Sri", time() + 3600); // Set cookie (may not work in some online compilers)
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PHP Data Passing - Online Compiler Version</title>
+</head>
+<body>
+<h2>POST Method</h2>
+<form method="post">
+    Enter your name: <input type="text" name="name"><br>
+    Enter your age: <input type="number" name="age"><br>
+    <input type="submit" name="submit" value="Submit via POST">
+</form>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'] ?? 'No Name';
+    $age = $_POST['age'] ?? 'No Age';
+    echo "<h3>Received via POST:</h3>";
+    echo "Name: $name<br>";
+    echo "Age: $age<br><br>";
+}
+echo "<h3>SESSION Example:</h3>";
+echo "Username from session: " . ($_SESSION['username'] ?? 'Not Set') . "<br><br>";
+echo "<h3>COOKIE Example:</h3>";
+echo "User from cookie: " . ($_COOKIE['user'] ?? 'Not Available in Online Compiler') . "<br>";
+?>
+</body>
+</html>
+output:
+POST Method
+Enter your name: 
+Enter your age: 
+SESSION Example:
+Username from session: Monika
+COOKIE Example:
+User from cookie: Not Available in Online Compiler
+
+7)
+<?php
+$name = "Monika"; // Change this to "" to simulate blank input
+if (trim($name) == "") {
+    echo "Error: Name field cannot be empty!";
+} else {
+    echo "Hello, $name! Welcome to Everyone!<br>";
+    echo "Have a nice day!!";
+}
+?>
+output:
+Hello, Monika! Welcome to Everyone!
+Have a nice day!!
+
+8)
+<?php
+function deal() {
+    $costA = 25;
+    $sizeA = 11;
+    $costB = 23;
+    $sizeB = 9;
+    $costPerUnitA = $costA / $sizeA;
+    $costPerUnitB = $costB / $sizeB;
+    echo "Cost per ml of Drink A: " . round($costPerUnitA, 2) . " Rs/ml<br>";
+    echo "Cost per ml of Drink B: " . round($costPerUnitB, 2) . " Rs/ml<br>";
+    if ($costPerUnitA < $costPerUnitB) {
+        echo "<strong>Choose Drink A to save money.</strong>";
+    } elseif ($costPerUnitB < $costPerUnitA) {
+        echo "<strong>Choose Drink B to save money.</strong>";
+    } else {
+        echo "<strong>Both drinks cost the same per unit. Choose any.</strong>";
+    }
+}
+deal();
+?>
+output:
+Cost per ml of Drink A: 2.27 Rs/ml
+Cost per ml of Drink B: 2.56 Rs/ml
+Choose Drink A to save money.
+
+
 
 
