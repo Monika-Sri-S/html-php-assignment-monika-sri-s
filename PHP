@@ -161,6 +161,487 @@ Cost per ml of Drink A: 2.27 Rs/ml
 Cost per ml of Drink B: 2.56 Rs/ml
 Choose Drink A to save money.
 
+9)
+<?php
+$my_var = "this";         
+$that = "that";
+$the_other = 2.2;
+$not_set = "";            
+print("$my_var,$not_set,{$that}+{$the_other}");
+?>
+Output:
+this,,that+2.2
 
+10)
+<?php
+$marks = 90;
+echo "Student Marks: $marks%<br>";
+if ($marks >= 75) {
+    echo "Grade: First Class";
+} elseif ($marks >= 60 && $marks <= 74) {
+    echo "Grade: Second Class";
+} elseif ($marks >= 40 && $marks <= 59) {
+    echo "Grade: Third Class";
+} else {
+    echo "Grade: Fail";
+}
+?>
+Output
+Student Marks: 90%
+Grade: First Class
 
+11)
+<?php
+$dayNumber = date("w");
+switch ($dayNumber) {
+    case 0:
+        echo "Today is Sunday";
+        break;
+    case 1:
+        echo "Today is Monday";
+        break;
+    case 2:
+        echo "Today is Tuesday";
+        break;
+    case 3:
+        echo "Today is Wednesday";
+        break;
+    case 4:
+        echo "Today is Thursday";
+        break;
+    case 5:
+        echo "Today is Friday";
+        break;
+    case 6:
+        echo "Today is Saturday";
+        break;
+    default:
+        echo "Invalid day";
+}
+?>
+Output:
+Today is Friday 
 
+12)
+<?php
+$sub = substr((string)12345, 2, 2);
+echo "sub is $sub";
+?>
+Output:
+sub is 34
+
+13)
+Sum of the digits
+<?php
+$number = 9876;
+$sum = 0;
+$temp = $number;
+while ($number > 0) {
+    $digit = $number % 10;  
+    $sum += $digit;            
+    $number = (int)($number / 10); 
+}
+echo "Sum of digits of $temp is: $sum";
+?>
+Output:
+Sum of digits of 9876 is: 30
+
+14)<?php
+function addNumbers($num1, $num2) {
+    return $num1 + $num2;
+}
+$result = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $number1 = $_POST['number1'];
+    $number2 = $_POST['number2'];
+    $result = addNumbers($number1, $number2);
+}
+?>
+<html>
+<head>
+    <title>Sum of Two Numbers</title>
+</head>
+<body>
+<h2>Add Two Numbers</h2>
+<form method="post">
+    Number 1: <input type="number" name="number1" required><br><br>
+    Number 2: <input type="number" name="number2" required><br><br>
+    <input type="submit" value="Add">
+</form>
+<?php
+if ($result !== "") {
+    echo "<h3>Result: $result</h3>";
+}
+?>
+</body>
+</html>
+
+15)
+<?php
+$text = "PHP is easy to learn. PHP is powerful. I love PHP!";
+$word = "PHP";
+$count = substr_count($text, $word);
+echo "The word '$word' occurs $count times in the given string.";
+?>
+Output:
+The word 'PHP' occurs 3 times in the given string. 
+
+16)
+17)<?php
+$balance = 5000; 
+function deposit($amount, &$balance) {
+    if ($amount > 0) {
+        $balance += $amount;
+        echo "Deposited: ₹$amount <br>";
+    } else {
+        echo "Invalid deposit amount.<br>";
+    }
+}
+function withdraw($amount, &$balance) {
+    if ($amount > 0) {
+        if ($amount <= $balance) {
+            $balance -= $amount;
+            echo "Withdrawn: ₹$amount <br>";
+        } else {
+            echo "Insufficient balance.<br>";
+        }
+    } else {
+        echo "Invalid withdrawal amount.<br>";
+    }
+}
+echo "<h2>Bank Transactions</h2>";
+echo "Opening Balance: ₹$balance <br><br>";
+deposit(2000, $balance);
+withdraw(1000, $balance);
+?>
+Output:
+Bank Transactions
+Opening Balance: ₹5000 
+Deposited: ₹2000 
+Withdrawn: ₹1000 
+
+18)
+<?php
+$name = "John";
+if (isset($name)) {
+    echo "The variable \$name is set and not NULL.<br>";
+} else {
+    echo "The variable \$name is not set or is NULL.<br>";
+}
+$age = NULL;
+if (isset($age)) {
+    echo "The variable \$age is set.<br>";
+} else {
+    echo "The variable \$age is not set or is NULL.<br>";
+}
+$city = "New York";
+if (isset($name, $city)) {
+    echo "Both \$name and \$city are set.<br>";
+} else {
+    echo "One or more variables are not set.<br>";
+}
+?>
+Output:
+The variable $name is set and not NULL.
+The variable $age is not set or is NULL.
+Both $name and $city are set.
+
+19)
+<?php
+function findHighLow($numbers) {
+    $highest = max($numbers);
+    $lowest = min($numbers);
+    return array("highest" => $highest, "lowest" => $lowest);
+}
+$result = null;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $numbers = explode(",", $_POST['numbers']);
+    $numbers = array_map('intval', $numbers);
+    $result = findHighLow($numbers);
+}
+?>
+<html>
+<head>
+    <title>Highest and Lowest Finder</title>
+</head>
+<body>
+<h2>Find Highest & Lowest Number</h2>
+<form method="post">
+    Enter numbers (comma separated): 
+    <input type="text" name="numbers" placeholder="e.g. 10, 20, 5, 30" required>
+    <br><br>
+    <input type="submit" value="Find">
+</form>
+<?php
+if ($result) {
+    echo "<h3>Highest Value: " . $result['highest'] . "</h3>";
+    echo "<h3>Lowest Value: " . $result['lowest'] . "</h3>";
+}
+?>
+</body>
+</html>
+20)<?php
+$name = $email = $message = "";
+$error = "";
+$success = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["name"]) || empty($_POST["email"]) || empty($_POST["message"])) {
+        $error = "All fields are required!";
+    } else {
+        $name = $_POST["name"];
+        $email = $_POST["email"];
+        $message = $_POST["message"];
+        $success = "Message sent successfully!";
+    }
+}
+?>
+<html>
+<head>
+    <title>Simple Contact Form</title>
+</head>
+<body>
+<h2>Contact Form</h2>
+<?php
+if ($error) echo "<p style='color:red;'>$error</p>";
+if ($success) echo "<p style='color:green;'>$success</p>";
+?>
+<form method="post">
+    Name: <input type="text" name="name"><br><br>
+    Email: <input type="email" name="email"><br><br>
+    Message: <textarea name="message"></textarea><br><br>
+    <input type="submit" value="Send">
+</form>
+</body>
+</html>
+
+21)
+<?php
+function isLeapYear($year) {
+    if (($year % 4 == 0 && $year % 100 != 0) || ($year % 400 == 0)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+$year = 2024;
+
+if (isLeapYear($year)) {
+    echo "$year is a Leap Year.";
+} else {
+    echo "$year is NOT a Leap Year.";
+}
+?>
+Output:
+2024 is a Leap Year. 
+
+22)
+<?php
+$text = "PHP is easy to learn. PHP is powerful. I love PHP!";
+$word = "PHP";
+$count = substr_count($text, $word);
+echo "The word '$word' occurs $count times in the given string.";
+?>
+Output:
+The word 'PHP' occurs 3 times in the given string. 
+
+23)
+<?php
+if (isset($_GET['city'])) {
+    $city = $_GET['city'];
+    echo "Showing weather for: $city<br>";
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password']; // Normally you'd verify this
+    echo "Welcome, $username!<br>";
+}
+?>
+<html>
+<head>
+    <title>GET vs POST Example</title>
+</head>
+<body>
+<h2>Check Weather (GET)</h2>
+<form method="get">
+    City: <input type="text" name="city" required>
+    <input type="submit" value="Check">
+
+24)
+<?php
+$text = "  Hello World from PHP!  ";
+echo "Original String: '$text'<br><br>";
+echo "Trim: '" . trim($text) . "'<br>";
+echo "Lowercase: " . strtolower($text) . "<br>";
+echo "Uppercase: " . strtoupper($text) . "<br>";
+echo "Length: " . strlen($text) . "<br>";
+echo "Word Count: " . str_word_count($text) . "<br>";
+echo "Reversed: " . strrev($text) . "<br>";
+echo "Replace 'PHP' with 'Programming': " . str_replace("PHP", "Programming", $text) . "<br>";
+echo "Position of 'World': " . strpos($text, "World") . "<br>";
+echo "Substring (chars 2 to 8): " . substr($text, 2, 7) . "<br>";
+echo "Repeat 3 times: " . str_repeat("Hi! ", 3) . "<br>";
+echo "Shuffled: " . str_shuffle($text) . "<br>";
+echo "Compare 'apple' & 'banana': " . strcmp("apple", "banana") . "<br>";
+echo "Add Slashes: " . addslashes($text) . "<br>";
+$html = "<b>Hello</b> <i>World</i>";
+echo "Remove HTML tags: " . strip_tags($html) . "<br>";
+?>
+Output:
+Original String: ' Hello World from PHP! '
+Trim: 'Hello World from PHP!'
+Lowercase: hello world from php! 
+Uppercase: HELLO WORLD FROM PHP! 
+Length: 25
+Word Count: 4
+Reversed: !PHP morf dlroW olleH 
+Replace 'PHP' with 'Programming': Hello World from Programming! 
+Position of 'World': 8
+Substring (chars 2 to 8): Hello W
+Repeat 3 times: Hi! Hi! Hi! 
+Shuffled: mlH l Hfr oeldo o WP!Pr
+Compare 'apple' & 'banana': -1
+Add Slashes: Hello World from PHP! 
+Remove HTML tags: Hello World
+
+25)
+<?php
+$text = "The Thing will come to you soon";
+$newText = preg_replace('/the/i', 'best', $text, 1);
+echo "Original: $text<br>";
+echo "Modified: $newText";
+?>
+Output:
+Original: The Thing will come to you soon
+Modified: best Thing will come to you soon
+
+26)
+<html>
+<head>
+    <title>PHP Chess Board</title>
+    <style>
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        td {
+            width: 60px;
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+<h2>Chess Board in PHP</h2>
+<?php
+echo "<table>";
+for ($row = 1; $row <= 8; $row++) {
+    echo "<tr>";
+    for ($col = 1; $col <= 8; $col++) {
+        // Alternate colors
+        if (($row + $col) % 2 == 0) {
+            echo "<td style='background-color: white;'></td>";
+        } else {
+            echo "<td style='background-color: black;'></td>";
+        }
+    }
+    echo "</tr>";
+}
+echo "</table>";
+?>
+</body>
+</html>
+
+27)
+<?php
+$a = 15;
+$b = 4;
+echo "a = $a, b = $b<br><br>";
+echo "Addition (+): " . ($a + $b) . "<br>";        
+echo "Subtraction (-): " . ($a - $b) . "<br>";    
+echo "Multiplication (*): " . ($a * $b) . "<br>"; 
+echo "Division (/): " . ($a / $b) . "<br>";  
+echo "Modulus (%): " . ($a % $b) . "<br>";        
+echo "Exponentiation (**): " . ($a ** $b) . "<br>"; 
+?>
+Output:
+a = 15, b = 4
+Addition (+): 19
+Subtraction (-): 11
+Multiplication (*): 60
+Division (/): 3.75
+Modulus (%): 3
+Exponentiation (**): 50625
+
+28)
+<?php
+$a = 10;
+$b = "10";
+$c = 20;
+echo "Check if \$a == \$b: ";
+var_dump($a == $b);
+echo "Check if \$a === \$b: ";
+var_dump($a === $b);
+echo "Check if \$a == \$b && \$b == \$c: ";
+var_dump($a == $b && $b == $c); 
+echo "Check if \$a === \$b && \$b === \$c: ";
+var_dump($a === $b && $b === $c);
+?>
+Output:
+Check if $a == $b: bool(true) 
+Check if $a === $b: bool(false)
+Check if $a == $b && $b == $c: bool(false)
+Check if $a === $b && $b === $c: bool(false) 
+
+29)<?php
+// 1. rand() - Random number
+echo "<h3>rand() Example:</h3>";
+echo "Random number: " . rand() . "<br>";
+echo "Random number between 1 and 10: " . rand(1, 10) . "<br><br>";
+// 2. abs() - Absolute value
+echo "<h3>abs() Example:</h3>";
+echo "Absolute of -15: " . abs(-15) . "<br>";
+echo "Absolute of 7: " . abs(7) . "<br><br>";
+// 3. str_replace() - Replace text
+echo "<h3>str_replace() Example:</h3>";
+$text = "I like apples";
+echo "Before: $text<br>";
+echo "After: " . str_replace("apples", "oranges", $text) . "<br><br>";
+// 4. pi() - Value of Pi
+echo "<h3>pi() Example:</h3>";
+echo "Value of pi: " . pi() . "<br><br>";
+// 5. ceil() - Round up
+echo "<h3>ceil() Example:</h3>";
+echo "ceil(4.3): " . ceil(4.3) . "<br>";
+echo "ceil(9.1): " . ceil(9.1) . "<br>";
+?>
+Output:
+rand() Example:
+Random number: 818021494
+Random number between 1 and 10: 9
+abs() Example:
+Absolute of -15: 15
+Absolute of 7: 7
+str_replace() Example:
+Before: I like apples
+After: I like oranges
+pi() Example:
+Value of pi: 3.1415926535898
+ceil() Example:
+ceil(4.3): 5
+ceil(9.1): 10
+
+30)
+<?php
+function generatePassword($length = 10) {   
+    $characters = 'abc+-/123';  
+    $password = '';
+    $maxIndex = strlen($characters) - 1;
+    for ($i = 0; $i < $length; $i++) {
+        $randomIndex = rand(0, $maxIndex);
+        $password .= $characters[$randomIndex];
+    }
+    return $password;
+}
+echo "Random Password: " . generatePassword(12); 
+?>
+Output:
+Random Password: /a2+/+3//cb+
