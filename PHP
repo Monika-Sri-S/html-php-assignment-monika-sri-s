@@ -1590,3 +1590,145 @@ Array
  [3] => 40
  [4] =>50
 )
+
+71)
+<?php
+echo "=== Demonstrating PHP File Handling Modes (Simulated) ===\n\n";
+$file = fopen("php://memory", "w+");
+fwrite($file, "This is written in w mode.\n");
+rewind($file);
+echo "w mode output:\n" . stream_get_contents($file) . "\n\n";
+$file = fopen("php://memory", "a+");
+fwrite($file, "First line in a mode.\n");
+fwrite($file, "Appended line in a mode.\n");
+rewind($file);
+echo "a mode output:\n" . stream_get_contents($file) . "\n\n";
+$temp = fopen("php://memory", "w+");
+fwrite($temp, "Reading in r mode.\n");
+rewind($temp);
+echo "r mode output:\n" . fread($temp, 1024) . "\n\n";
+$temp = fopen("php://memory", "w+");
+fwrite($temp, "Original text.\n");
+rewind($temp);
+fwrite($temp, "Edited in r+ mode.\n"); // Overwrites from start
+rewind($temp);
+echo "r+ mode output:\n" . stream_get_contents($temp) . "\n\n";
+echo "x mode simulation: Creates a new file only if it does not exist.\n";
+echo "(In online compilers, actual file creation is restricted.)\n";
+?>
+Output:
+w mode output:
+This is written in w mode.
+a mode output:
+First line in a mode.
+Appended line in a mode.
+r mode output:
+Reading in r mode.
+r+ mode output:
+Edited in r+ mode.
+x mode simulation: Creates a new file only if it does not exist.
+(In online compilers, actual file creation is restricted.)
+
+72)
+<?php
+session_start(); // Start the session
+// (i) session_register() equivalent
+// Old: session_register("username");
+// New way:
+$_SESSION["username"] = "JohnDoe";
+$_SESSION["email"] = "john@example.com";
+echo "<h3>Session Variables Registered:</h3>";
+print_r($_SESSION);
+// (ii) session_unset() - remove all session variables but keep session
+session_unset();
+echo "<br><br><strong>After session_unset():</strong><br>";
+print_r($_SESSION);
+// (iii) session_destroy() - remove session data completely
+session_destroy();
+echo "<br><br>Session destroyed.";
+?>
+Output:
+<h3>Session Variables Registered:</h3>Array
+(
+ [username] => JohnDoe
+ [email] => john@example.com
+)
+<br><br><strong>After session_unset():</strong><br>Array
+(
+)
+<br><br>Session destroyed.
+
+73)
+<?php
+$uploadedFileName = "sample.gif"; // Change this to test: e.g., "photo.jpg", "image.png"
+$allowedExtensions = ['jpg', 'jpeg', 'png'];
+$fileExtension = strtolower(pathinfo($uploadedFileName, PATHINFO_EXTENSION));
+if (in_array($fileExtension, $allowedExtensions)) {
+ echo " File accepted: $uploadedFileName\n";
+} else {
+ echo " Error: Only JPG or PNG files are allowed! ($uploadedFileName)\n";
+}
+?>
+Output:
+ERROR!
+ Error: Only JPG or PNG files are allowed! 
+
+74)
+<?php
+$fp = fopen("php://memory", "w+");
+// 1. WRITE TO FILE (fwrite)
+fwrite($fp, "Hello, this is PHP file handling in memory!\n");
+fwrite($fp, "We are writing this text into a memory file.\n");
+// Move pointer back to start for reading
+rewind($fp);
+// 2. READ FILE LINE BY LINE (fgets())
+echo "Reading file line-by-line using fgets():\n";
+while (!feof($fp)) {
+ echo fgets($fp);
+}
+// 3. APPEND TO FILE
+fseek($fp, 0, SEEK_END); // Move to end
+fwrite($fp, "This line is appended at the end.\n");
+rewind($fp);
+echo "\nReading whole file after appending:\n";
+while (!feof($fp)) {
+ echo fgets($fp);
+}
+fclose($fp);
+?>
+Output:
+Reading file line-by-line using fgets():
+Hello, this is PHP file handling in memory!
+We are writing this text into a memory file.
+Reading whole file after appending:
+Hello, this is PHP file handling in memory!
+We are writing this text into a memory file.
+This line is appended at the end.
+=== Code Execution Successful ===
+
+75)
+<?php
+function appendLineToFile($filename, $newLine) {
+ $fp = fopen($filename, "a+"); // a+ = read/write and append mode
+ if (!$fp) {
+ echo "Unable to open file!";
+ return;
+ }
+ fwrite($fp, $newLine . "\n");
+ rewind($fp);
+  echo "File content after appending:\n";
+ while (!feof($fp)) {
+ echo fgets($fp);
+ }
+ fclose($fp);
+$filename = "php://memory";
+$fp = fopen($filename, "w+");
+fwrite($fp, "First line in file.\n");
+fclose($fp);
+appendLineToFile($filename, "This is the appended line");
+?>
+Output:
+File content after appending:
+This is the appended line
+
+76)
