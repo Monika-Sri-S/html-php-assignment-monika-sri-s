@@ -1732,3 +1732,169 @@ File content after appending:
 This is the appended line
 
 76)
+<?php
+$birthdayMonth = 12;
+$birthdayDay = 25;
+$today = new DateTime();
+$birthdayThisYear = new DateTime($today->format('Y') . "-$birthdayMonth-
+$birthdayDay");
+if ($birthdayThisYear < $today) {
+$birthdayNext = new DateTime(($today->format('Y') + 1) . "-$birthdayMonth-
+$birthdayDay");
+} else {
+$birthdayNext = $birthdayThisYear;
+}
+$interval = $today->diff($birthdayNext);
+$daysLeft = $interval->days;
+echo "Your birthday is in $daysLeft day(s)!";
+?>
+Output:
+Your birthday is in 131 day(s)!
+
+77)
+<?php
+$networkFunctions = [
+"Addressing & Name Resolution" => [
+"Examples" => ["DNS", "DHCP", "ARP"],
+"Purpose" => "Identify devices and map names to addresses."
+],
+"Routing & Forwarding" => [
+"Examples" => ["RIP", "OSPF", "BGP"],
+"Purpose" => "Determine and forward data packets through the best path."
+],
+"Monitoring & Management" => [
+"Examples" => ["SNMP", "NetFlow", "Ping", "Traceroute"],
+"Purpose" => "Monitor network devices, traffic, and performance."
+],
+"Security" => [
+"Examples" => ["Firewall", "IDS/IPS", "VPN"],
+"Purpose" => "Protect network from unauthorized access and attacks."
+],
+"Quality of Service (QoS)" => [
+"Examples" => ["Traffic shaping", "Latency monitoring", "Jitter control"],
+"Purpose" => "Prioritize and manage network traffic for critical applications."
+],
+"Discovery & Topology" => [
+"Examples" => ["LLDP", "CDP", "Nmap"],
+"Purpose" => "Discover network devices and visualize topology."
+],
+"Service & Access" => [
+"Examples" => ["HTTP", "FTP", "Proxy servers", "Load balancers"],
+"Purpose" => "Provide network services and application access."
+]
+];
+foreach ($networkFunctions as $type => $details) {
+echo "=== $type ===\n";
+echo "Examples: " . implode(", ", $details["Examples"]) . "\n";
+echo "Purpose: " . $details["Purpose"] . "\n\n";
+}
+?>
+Output:
+=== Addressing & Name Resolution ===
+Examples: DNS, DHCP, ARP
+Purpose: Identify devices and map names to addresses.
+=== Routing & Forwarding ===
+Examples: RIP, OSPF, BGP
+Purpose: Determine and forward data packets through the best path.
+=== Monitoring & Management ===
+Examples: SNMP, NetFlow, Ping, Traceroute
+Purpose: Monitor network devices, traffic, and performance.
+=== Security ===
+Examples: Firewall, IDS/IPS, VPN
+Purpose: Protect network from unauthorized access and attacks.
+=== Quality of Service (QoS) ===
+Examples: Traffic shaping, Latency monitoring, Jitter control
+Purpose: Prioritize and manage network traffic for critical applications.
+=== Discovery & Topology ===
+Examples: LLDP, CDP, Nmap
+Purpose: Discover network devices and visualize topology.
+=== Service & Access ===
+Examples: HTTP, FTP, Proxy servers, Load balancers
+Purpose: Provide network services and application access.
+
+78)
+<?php
+$simulatedCookies = [
+"username" => "JohnDoe",
+"theme" => "dark"
+];
+echo "=== Reading Cookies ===\n";
+foreach($simulatedCookies as $name => $value){
+echo "Name: $name, Value: $value\n";
+}
+$simulatedCookies = [];
+echo "\n=== Cookies Deleted ===\n";
+if(empty($simulatedCookies)){
+echo "No cookies found.\n";
+}
+?>
+Output:
+Name: username, Value: JohnDoe
+Name: theme, Value: dark
+=== Cookies Deleted ===
+No cookies found.
+
+79)
+<?php
+$file1Content = "This is content of file1.\nLine 2 of file1.";
+$file2Content = "This is content of file2.\nLine 2 of file2.";
+$combinedContent = $file1Content . "\n" . $file2Content;
+echo "=== Combined File Content ===\n";
+echo $combinedContent;
+?>
+OUTPUT:
+=== Combined File Content ===
+This is content of file1.
+Line 2 of file1.
+This is content of file2.
+Line 2 of file2.
+
+80)
+<?php
+$cookie_name = "TestCookie";
+$cookie_value = "HelloWorld";
+setcookie($cookie_name, $cookie_value, time() + 3600, "/");
+if(isset($_COOKIE[$cookie_name])){
+echo "Cookie '{$cookie_name}' is already set. Value: " . $_COOKIE[$cookie_name];
+} else {
+echo "Cookie '{$cookie_name}' has been created! Refresh the page to see it.";
+}
+?>
+Output:
+Cookie 'TestCookie' has been created! Refresh the page to see it.
+
+81)
+<?php
+$admin_username = "admin";
+$admin_password = "admin123";
+$input_username = "admin"; // Replace with test username
+$input_password = "admin123"; // Replace with test password
+$action = "login"; // Use "login" or "logout"
+$session_admin = null;
+if($action === "login"){
+if($input_username === $admin_username && $input_password ===
+$admin_password){
+$session_admin = $input_username;
+echo "Login successful! Welcome, $session_admin.\n";
+} else {
+echo "Invalid username or password!\n";
+}
+} elseif($action === "logout"){
+$session_admin = null;
+echo "You have been logged out.\n";
+}
+if($session_admin){
+echo "=== Dashboard ===\n";
+echo "Admin: $session_admin\n";
+echo "You are logged in.\n";
+} else {
+echo "You are not logged in.\n";
+}
+?>
+output:
+Login successful! Welcome, admin.
+=== Dashboard ===
+Admin: admin
+You are logged in.
+
+82)
