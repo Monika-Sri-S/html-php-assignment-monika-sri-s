@@ -1408,3 +1408,185 @@ Array
 )
 
 62)
+<?php
+$values = [1.65, 1.65, -1.54];
+foreach ($values as $value) {
+ echo "Original: $value => Rounded: " . round($value, 1) . "<br>";
+}
+?>
+output:
+Original: 1.65 => Rounded: 1.7<br>Original: 1.65 => Rounded: 1.7<br>Original: -1.54 => 
+Rounded: -1.5<br>
+
+63)
+<?php
+function sumOfEvenNumbers($numbers) {
+ $sum = 0;
+ foreach ($numbers as $num) {
+ if ($num % 2 == 0) { // Check if even
+ $sum += $num;
+ }
+ }
+ return $sum;
+}
+$array = [1, 2, 3, 4, 5, 6];
+echo "Sum of even numbers: " . sumOfEvenNumbers($array);
+?>
+Output:
+Sum of even numbers: 12
+
+64)
+<?php
+$salesData = [
+ 2020 => 150,
+ 2021 => 165,
+ 2022 => 180,
+ 2023 => 210
+];
+$totalSales = array_sum($salesData);
+$averageSales = $totalSales / count($salesData);
+$growthRates = [];
+$previousYearSales = null;
+foreach ($salesData as $year => $sales) {
+ if ($previousYearSales !== null) {
+ $growthRate = (($sales - $previousYearSales) / $previousYearSales) * 100; // %
+ $growthRates[$year] = round($growthRate, 2);
+ }
+ $previousYearSales = $sales;
+}
+$averageGrowthRate = array_sum($growthRates) / count($growthRates);
+$forecastYears = 3;
+$lastYear = max(array_keys($salesData));
+$lastSales = end($salesData);
+$forecast = [];
+for ($i = 1; $i <= $forecastYears; $i++) {
+ $lastSales = $lastSales * (1 + ($averageGrowthRate / 100)); // Apply growth rate
+ $forecast[$lastYear + $i] = round($lastSales, 2);
+}
+echo "<h3>Sales Analysis Report</h3>";
+echo "Total Sales: $totalSales K<br>";
+echo "Average Sales: " . round($averageSales, 2) . " K<br>";
+echo "Average Growth Rate: " . round($averageGrowthRate, 2) . "%<br><br>";
+echo "<strong>Yearly Growth Rates:</strong><br>";
+foreach ($growthRates as $year => $rate) {
+ echo "$year: $rate%<br>";
+}
+echo "<br><strong>Sales Forecast:</strong><br>";
+foreach ($forecast as $year => $value) {
+ echo "$year: $value K<br>";
+}
+?>
+Output:
+<h3>Sales Analysis Report</h3>Total Sales: 705 K<br>Average Sales: 176.25 
+K<br>Average Growth Rate: 11.92%<br><br><strong>Yearly Growth 
+Rates:</strong><br>2021: 10%<br>2022: 9.09%<br>2023: 
+16.67%<br><br><strong>Sales Forecast:</strong><br>2024: 235.03 K<br>2025: 263.05 
+K<br>2026: 294.4 K<br>
+
+65)
+<?php
+$mainString = "Welcome to the world of PHP programming!";
+$searchString = "PHP";
+if (strpos($mainString, $searchString) !== false) {
+ echo "The string '$searchString' was found in the main string.";
+} else {
+ echo "The string '$searchString' was NOT found in the main string.";
+}
+?>
+Output:
+The string 'PHP' was found in the main string.
+
+66)
+<?php
+$fruits = ["Apple", "Banana", "Cherry"];
+echo "Using count(): " . count($fruits) . "<br>";
+echo "Using sizeof(): " . sizeof($fruits) . "<br>";
+$multiArray = ["Apple", "Banana", ["Cherry", "Mango"]];
+echo "count() normal mode: " . count($multiArray) . "<br>";
+echo "count() recursive mode: " . count($multiArray, COUNT_RECURSIVE) . "<br>";
+echo "sizeof() recursive mode: " . sizeof($multiArray, COUNT_RECURSIVE) . "<br>";
+?>
+Output:
+Using count(): 3<br>
+Using sizeof(): 3<br>count() 
+normal mode: 3<br>count() 
+recursive mode: 5<br>sizeof() 
+recursive mode: 5<br>
+
+67)
+<?php
+$sentence = "PHP is great. PHP is powerful, and PHP is easy to learn.";
+preg_match_all('/\b\w+\b/', strtolower($sentence), $matches);
+$wordCounts = array_count_values($matches[0]);
+echo "<h3>Word Frequency:</h3>";
+foreach ($wordCounts as $word => $count) {
+ echo "$word : $count<br>";
+}
+?>
+Output:
+<h3>Word Frequency:</h3>php : 3<br>is : 3<br>great : 1<br>powerful : 1<br>and : 
+1<br>easy : 1<br>to : 1<br>learn : 1<br>
+
+68)
+<?php
+try {
+ $numerator = 10;
+ $denominator = 0;
+ if ($denominator == 0) {
+ throw new Exception("Division by zero is not allowed.");
+ }
+ $result = $numerator / $denominator;
+ echo "Result: $result";
+} catch (Exception $e) {
+ echo "Error: " . $e->getMessage();
+}
+?>
+Output:
+ERROR!
+Error: Division by zero is not allowed.
+
+69)
+<?php
+function changeArrayCase($array) {
+ $lowerCaseArray = array_map('strtolower', $array);
+ echo "Values are in lower case.<br>";
+ print_r($lowerCaseArray);
+ echo "<br><br>";
+ $upperCaseArray = array_map('strtoupper', $array);
+ echo "Values are in upper case.<br>";
+ print_r($upperCaseArray);
+}
+$Color = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red');
+changeArrayCase($Color);
+?>
+Output:
+Values are in lower case.<br>Array
+(
+ [A] => blue
+ [B] => green
+ [c] => red
+)
+<br><br>Values are in upper case.<br>Array
+(
+ [A] => BLUE
+ [B] => GREEN
+ [c] => RED
+)
+
+70)
+<?php
+$input = "10, 20, 30, 40, 50";
+$numbersArray = array_map('trim', explode(",", $input));
+echo "Stored Numbers:\n";
+print_r($numbersArray);
+?>
+Output:
+Stored Numbers:
+Array
+(
+ [0] => 10
+ [1] => 20
+ [2] => 30
+ [3] => 40
+ [4] =>50
+)
