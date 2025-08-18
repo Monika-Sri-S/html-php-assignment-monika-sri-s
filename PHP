@@ -645,3 +645,766 @@ echo "Random Password: " . generatePassword(12);
 ?>
 Output:
 Random Password: /a2+/+3//cb+
+
+31)
+<?php
+$fruits = array("apple", "banana", "cherry", "date");
+array_shift($fruits); // Removes "apple"
+print_r($fruits);
+?>
+Output:
+Array
+(
+ [0] => banana
+ [1] => cherry
+ [2] => date
+)
+
+32) a)
+<?php
+$names = array("alex", "jean", "emily", "jane");
+$name = preg_grep("/^e/", $names);
+print_r($name);
+?>
+Output:
+Array
+(
+ [2] => emily
+)
+b) 
+?php
+$names = array("alex", "jean", "emily", "jane");
+$name = preg_grep("/^e/", $names);
+print_r($name);
+?>
+Output:
+Array
+(
+ [2] => emily
+)
+
+33)
+<?php
+$matrix = array(
+ array(1, 2, 3), // Row 1
+ array(4, 5, 6), // Row 2
+ array(7, 8, 9) // Row 3
+);
+echo "The value in the second row, third column is: $value";
+?>
+Output:
+The value in the second row, third column is: 6
+
+34)
+<?php
+$text = "The sky is blue. Blue is my favorite color. I like blue skies.";
+$result = preg_replace("/\bblue\b/i", "green", $text);
+echo $result;
+?>
+Output:
+The value in the second row, third column is: 6
+
+35)
+<?php
+$strings = array(
+ "I love PHP programming",
+ "JavaScript is fun",
+ "PHP is great for web development"
+);
+$search = "PHP";
+foreach ($strings as $text) {
+ if (strpos($text, $search) !== false) { 
+ echo "The string '$text' contains '$search'.<br>";
+ } else {
+ echo "The string '$text' does NOT contain '$search'.<br>";
+ }
+}
+?>
+Output:
+The string 'I love PHP programming' contains 'PHP'.<br>The string 'JavaScript is fun' 
+does NOT contain 'PHP'.<br>The string 'PHP is great for web development' contains 
+'PHP'.<br>
+
+36)
+<?php
+// Create an array of fruits
+$fruits = array("Apple", "Banana", "Cherry", "Date", "Mango");
+// Display the third element (index 2, since arrays are zero-indexed)
+echo "The third fruit is: " . $fruits[2];
+?>
+Output:
+The third fruit is: Cherry
+
+37)
+<?php
+$fruits = array("Apple", "Banana");
+array_push($fruits, "Cherry", "Mango");
+echo "After Push: ";
+print_r($fruits);
+$removed = array_pop($fruits);
+echo "Removed: $removed\n";
+echo "After Pop: ";
+print_r($fruits);
+?>
+Output:
+After Push: Array
+(
+ [0] => Apple
+ [1] => Banana
+ [2] => Cherry
+ [3] => Mango
+)
+Removed: Mango
+After Pop: Array
+(
+ [0] => Apple
+ [1] => Banana
+ [2] => Cherry
+)
+
+38)
+<?php
+$fruits = array("Apple", "Banana", "Cherry", "Mango");
+$i = 0;
+$length = count($fruits);
+while ($i < $length) {
+ echo "Fruit at index $i: " . $fruits[$i] . "<br>";
+ $i++;
+}
+?>
+Output:
+Fruit at index 0: Apple<br>Fruit at index 1: Banana<br>Fruit at index 2: Cherry<br>Fruit 
+at index 3: Mango<br>
+
+39)
+<?php
+$students = array(
+ array("name" => "Alice", "score" => 92),
+ array("name" => "Bob", "score" => 76),
+ array("name" => "Charlie", "score" => 64),
+ array("name" => "David", "score" => 58)
+);
+function calculateGrade($score) {
+ if ($score >= 90) return "A";
+ elseif ($score >= 80) return "B";
+ elseif ($score >= 70) return "C";
+ elseif ($score >= 60) return "D";
+ else return "F";
+}
+$students = array_map(function($student) {
+ $student["grade"] = calculateGrade($student["score"]);
+ return $student;
+}, $students);
+$totalScore = array_sum(array_column($students, "score"));
+$averageScore = $totalScore / count($students);
+$gradeCounts = array_count_values(array_column($students, "grade"));
+echo "<h2>Student Grades Report</h2>";
+foreach ($students as $student) {
+ echo "{$student['name']} - Score: {$student['score']} - Grade: {$student['grade']}<br>";
+}
+echo "<br><strong>Class Average:</strong> " . round($averageScore, 2) . "<br>";
+echo "<strong>Grade Distribution:</strong><br>";
+foreach ($gradeCounts as $grade => $count) {
+ echo "Grade $grade: $count student(s)<br>";
+}
+?>
+Output:
+<h2>Student Grades Report</h2>Alice - Score: 92 - Grade: A<br>Bob - Score: 76 -
+Grade: C<br>Charlie - Score: 64 - Grade: D<br>David - Score: 58 - Grade: 
+F<br><br><strong>Class Average:</strong> 72.5<br><strong>Grade 
+Distribution:</strong><br>Grade A: 1 student(s)<br>Grade C: 1 student(s)<br>Grade D: 
+1 student(s)<br>Grade F: 1 student(s)<br>
+
+40)
+<?php
+$text = "Hello@# World! 123_Ready?";
+$chars = str_split($text);
+$allowed = array_merge(
+ range('a', 'z'),
+ range('A', 'Z'),
+ range('0', '9'),
+ array(" ")
+);
+$resultArray = array_filter($chars, function($char) use ($allowed) {
+ return in_array($char, $allowed);
+});
+$cleaned = implode("", $resultArray);
+echo "Original: $text\n";
+echo "Cleaned: $cleaned\n";
+?>
+output:
+Original: Hello@# World! 123_Ready?
+Cleaned: Hello World 123Ready
+
+41)
+<?php
+$text = "Contact us at admin@example.com or support@mydomain.org. 
+You can also email john.doe123@company.co.uk for more info.";
+$pattern = '/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}/i';
+preg_match_all($pattern, $text, $matches);
+$emails = $matches[0];
+print_r($emails);
+?>
+Output:
+(
+ [0] => admin@example.com
+ [1] => support@mydomain.org
+ [2] => john.doe123@company.co.uk
+)
+
+42)
+<?php
+$marks1 = array(360,310,310,330,313,375,456,111,256);
+$marks2 = array(350,340,356,330,321);
+$marks3 = array(630,340,570,635,434,255,298);
+$allMarks = array_merge($marks1, $marks2, $marks3);
+$maxMark = max($allMarks);
+$minMark = min($allMarks);
+echo "Maximum Mark: $maxMark<br>";
+echo "Minimum Mark: $minMark";
+?>
+Output:
+Maximum Mark: 635<br>Minimum Mark: 111
+
+43)
+<?php
+$password = "Hello@123"; // Change to test different passwords
+$pattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+if (preg_match($pattern, $password)) {
+ echo " Valid password";
+} else {
+ echo " Invalid password";
+}
+?>
+Output:
+ Valid password
+
+44)
+<?php
+$songs = [
+ ["title" => "Shape of You", "artist" => "Ed Sheeran"],
+ ["title" => "Blinding Lights", "artist" => "The Weeknd"],
+ ["title" => "Someone Like You", "artist" => "Adele"],
+ ["title" => "Believer", "artist" => "Imagine Dragons"]
+];
+$playlist = [];
+array_push($playlist, $songs[0], $songs[2]); // Add Shape of You and Someone Like You
+echo " Playlist:\n";
+foreach ($playlist as $song) {
+ echo "- {$song['title']} by {$song['artist']}\n";
+}
+$playlist[] = $songs[1]; // Add Blinding Lights
+foreach ($playlist as $index => $song) {
+ if ($song['title'] === "Shape of You") {
+ unset($playlist[$index]);
+ }
+}
+$playlist = array_values($playlist); // Reindex array
+usort($playlist, function($a, $b) {
+ return strcmp($a['title'], $b['title']);
+});
+echo "\n Final Playlist (Sorted):\n";
+foreach ($playlist as $song) {
+ echo "- {$song['title']} by {$song['artist']}\n";
+}
+?>
+Output:
+ Playlist:
+- Shape of You by Ed Sheeran
+- Someone Like You by Adele
+ Final Playlist (Sorted):
+- Blinding Lights by The Weeknd
+- Someone Like You by Adele
+
+45)
+<?php
+$fruits = array("apple", "banana", "orange", "mango", "grape");
+$searchValue = "mango";
+$index = array_search($searchValue, $fruits);
+if ($index !== false) {
+ echo "The index of '$searchValue' is: $index";
+} else {
+ echo "'$searchValue' not found in the array.";
+}
+?>
+Output:
+The index of 'mango' is: 3
+
+46)
+<?php
+$fruits = array("apple", "banana", "orange", "mango", "grape");
+$searchValue = "mango";
+$index = array_search($searchValue, $fruits);
+if ($index !== false) {
+ echo "The index of '$searchValue' is: $index";
+} else {
+ echo "'$searchValue' not found in the array.";
+}
+?>
+Output:
+The index of 'mango' is: 3
+
+47)
+<?php
+$x = array(1, 2, 3, 4, 5);
+unset($x[2]);
+$x = array_values($x);
+foreach ($x as $value) {
+ echo $value . " ";
+}
+?>
+Output:
+1 2 4 5
+
+48)
+<?php
+$records = array("Apple", "Banana", "Cherry", "Date", "Elderberry");
+$recordNumber = 3; // 4th record
+echo "Record $recordNumber: " . $records[$recordNumber - 1]; // -1 because human 
+count starts from 1
+?>
+Output:
+Record 3: Cherry
+
+49)
+<?php
+$players = [
+ ["name" => "Alice", "goals" => 10, "assists" => 8, "fouls" => 2],
+ ["name" => "Bob", "goals" => 7, "assists" => 12, "fouls" => 5],
+ ["name" => "Charlie", "goals" => 15, "assists" => 5, "fouls" => 1],
+ ["name" => "David", "goals" => 5, "assists" => 6, "fouls" => 0]
+];
+foreach ($players as $key => $player) {
+ $performanceIndex = ($player['goals'] * 5) + ($player['assists'] * 3) - ($player['fouls'] * 
+2);
+ $players[$key]['performanceIndex'] = $performanceIndex;
+}
+$totalIndex = array_sum(array_column($players, 'performanceIndex'));
+$averageIndex = $totalIndex / count($players);
+usort($players, function ($a, $b) {
+ return $b['performanceIndex'] <=> $a['performanceIndex'];
+});
+echo "Average Performance Index: " . round($averageIndex, 2) . "\n\n";
+echo "Player Rankings:\n";
+foreach ($players as $rank => $player) {
+ echo ($rank+1) . ". " . $player['name'] . " - Index: " . $player['performanceIndex'] . "\n";
+}
+?>
+Output:
+Average Performance Index: 65.5
+Player Rankings:
+1. Charlie - Index: 88
+2. Alice - Index: 70
+3. Bob - Index: 61
+4. David - Index: 43
+
+50)
+<?php
+$players = array("Virat", "Rohit", "Dhoni", "Bumrah");
+$lowercaseArray = array_map('strtolower', $players);
+$uppercaseArray = array_map('strtoupper', $players);
+echo "Original Array:\n";
+print_r($players);
+echo "\nLowercase Array:\n";
+print_r($lowercaseArray);
+echo "\nUppercase Array:\n";
+print_r($uppercaseArray);
+?>
+Output:
+Original Array:
+Array
+(
+ [0] => Virat
+ [1] => Rohit
+ [2] => Dhoni
+ [3] => Bumrah
+)
+Lowercase Array:
+Array
+(
+ [0] => virat
+ [1] => rohit
+ [2] => dhoni
+ [3] => bumrah
+)
+Uppercase Array:
+Array
+(
+ [0] => VIRAT
+ [1] => ROHIT
+ [2] => DHONI
+ [3] => BUMRAH
+)
+
+51)
+<?php
+$fruits = array("Apple", "Banana", "Cherry", "Mango");
+echo "Original Array:\n";
+print_r($fruits);
+$removed = array_shift($fruits);
+echo "\nAfter array_shift() (Removed: $removed):\n";
+print_r($fruits);
+array_unshift($fruits, "Strawberry", "Pineapple");
+echo "\nAfter array_unshift():\n";
+print_r($fruits);
+?>
+Output:
+Original Array:
+Array
+(
+ [0] => Apple
+ [1] => Banana
+ [2] => Cherry
+ [3] => Mango
+)
+After array_shift() (Removed: Apple):
+Array
+(
+ [0] => Banana
+ [1] => Cherry
+ [2] => Mango
+)
+After array_unshift():
+Array
+(
+ [0] => Strawberry
+ [1] => Pineapple
+ [2] => Banana
+ [3] => Cherry
+ [4] => Mango
+)
+
+52)
+<?php
+echo "=== STACK (LIFO) Example ===\n";
+$stack = array();
+array_push($stack, "A");
+array_push($stack, "B");
+array_push($stack, "C");
+echo "Stack after pushes: ";
+print_r($stack);
+$popped = array_pop($stack);
+echo "Popped from stack: $popped\n";
+echo "Stack after pop: ";
+print_r($stack);
+echo "\n";
+echo "=== QUEUE (FIFO) Example ===\n";
+$queue = array();
+array_push($queue, "A");
+array_push($queue, "B");
+array_push($queue, "C");
+echo "Queue after enqueue: ";
+print_r($queue);
+$dequeued = array_shift($queue);
+echo "Dequeued from queue: $dequeued\n";
+echo "Queue after dequeue: ";
+print_r($queue);
+?>
+Output:
+=== STACK (LIFO) Example ===
+Stack after pushes: Array
+(
+ [0] => A
+ [1] => B
+ [2] => C
+)
+Popped from stack: C
+Stack after pop: Array
+(
+ [0] => A
+ [1] => B
+)
+=== QUEUE (FIFO) Example ===
+Queue after enqueue: Array
+(
+ [0] => A
+ [1] => B
+ [2] => C
+)
+Dequeued from queue: A
+Queue after dequeue: Array
+(
+ [0] => B
+ [1] => C
+)
+
+53)
+<?php
+$numbers = [10, 20, 30, 40, 50];
+echo "Original Array:\n";
+print_r($numbers);
+$lastElement = array_pop($numbers);
+echo "\nAfter array_pop():\n";
+echo "Removed Element: $lastElement\n";
+print_r($numbers);
+$firstElement = array_shift($numbers);
+echo "\nAfter array_shift():\n";
+echo "Removed Element: $firstElement\n";
+print_r($numbers);
+/*
+Difference:
+- array_pop() removes from the END of the array.
+- array_shift() removes from the BEGINNING of the array.
+*/
+?>
+Output:
+Original Array:
+Array
+(
+ [0] => 10
+ [1] => 20
+ [2] => 30
+ [3] => 40
+ [4] => 50
+)
+After array_pop():
+Removed Element: 50
+Array
+(
+ [0] => 10
+ [1] => 20
+ [2] => 30
+ [3] => 40
+)
+After array_shift():
+Removed Element: 10
+Array
+(
+ [0] => 20
+ [1] => 30
+ [2] => 40
+)
+
+54)
+<?php
+$ticketQueue = [];
+function bookTicket(&$queue, $personName) {
+ array_push($queue, $personName); // Adds to the end of queue
+ echo "$personName has booked a ticket and joined the queue.\n";
+}
+function serveTicket(&$queue) {
+ if (!empty($queue)) {
+ $person = array_shift($queue); // Removes from the start of queue
+ echo "$person has been served and removed from the queue.\n";
+ } else {
+ echo "No one in the queue to serve.\n";
+ }
+}
+function showQueue($queue) {
+ if (empty($queue)) {
+ echo "The queue is empty.\n";
+ } else {
+ echo "Current Queue: " . implode(", ", $queue) . "\n";
+ }
+}
+bookTicket($ticketQueue, "Alice");
+bookTicket($ticketQueue, "Bob");
+bookTicket($ticketQueue, "Charlie");
+showQueue($ticketQueue);
+serveTicket($ticketQueue);
+showQueue($ticketQueue);
+serveTicket($ticketQueue);
+showQueue($ticketQueue);
+bookTicket($ticketQueue, "David");
+showQueue($ticketQueue);
+serveTicket($ticketQueue);
+serveTicket($ticketQueue);
+serveTicket($ticketQueue); // Trying to serve when queue is empty
+?>
+Output:
+Alice has booked a ticket and joined the queue.
+Bob has booked a ticket and joined the queue.
+Charlie has booked a ticket and joined the queue.
+Current Queue: Alice, Bob, Charlie
+Alice has been served and removed from the queue.
+Current Queue: Bob, Charlie
+Bob has been served and removed from the queue.
+Current Queue: Charlie
+David has booked a ticket and joined the queue.
+Current Queue: Charlie, David
+Charlie has been served and removed from the queue.
+David has been served and removed from the queue.
+No one in the queue to serve.
+
+55)
+<?php
+$string = "Hello World";
+$charArray = str_split($string);
+$stack = [];
+foreach ($charArray as $char) {
+ array_push($stack, $char);
+}
+$reversedString = "";
+while (!empty($stack)) {
+ $reversedString .= array_pop($stack);
+}
+echo "Original String: " . $string . "<br>";
+echo "Reversed String: " . $reversedString;
+?>
+Output:
+Original String: Hello World<br>Reversed String: dlroW olleH
+
+56)
+<?php
+$fruits = ["banana", "apple", "cherry", "mango"];
+sort($fruits);
+print_r($fruits);
+rsort($fruits);
+print_r($fruits);
+$prices = ["apple" => 50, "banana" => 20, "mango" => 40];
+asort($prices);
+print_r($prices);
+ksort($prices);
+print_r($prices);
+?>
+Output:
+Array
+(
+ [0] => apple
+ [1] => banana
+ [2] => cherry
+ [3] => mango
+)
+Array
+(
+ [0] => mango
+ [1] => cherry
+ [2] => banana
+ [3] => apple
+)
+Array
+(
+ [banana] => 20
+ [mango] => 40
+ [apple] => 50
+)
+Array
+(
+ [apple] => 50
+ [banana] => 20
+ [mango] => 40
+)
+
+57)
+<?php
+$text = "Contact us at test@example.com or admin123@mail.com. 
+Order 123 costs $45 and delivery takes 2 days. Hello World PHP";
+preg_match_all("/[\w\.-]+@[\w\.-]+\.\w+/", $text, $emails);
+echo "Extracted Emails:\n";
+print_r($emails[0]);
+preg_match_all("/\d+/", $text, $numbers);
+echo "\nExtracted Numbers:\n";
+print_r($numbers[0]);
+$cleanText = preg_replace("/\s+/", " ", $text);
+echo "\nText after removing extra spaces:\n";
+echo $cleanText . "\n";
+$fruitsText = "apple, banana orange,grape";
+$parts = preg_split("/[\s,]+/", $fruitsText);
+echo "\nSplit Text into Parts:\n";
+print_r($parts);
+?>
+Output:
+Extracted Emails:
+Array
+(
+ [0] => test@example.com
+ [1] => admin123@mail.com
+)
+Extracted Numbers:
+Array
+(
+ [0] => 123
+ [1] => 123
+ [2] => 45
+ [3] => 2
+)
+Text after removing extra spaces:
+Contact us at test@example.com or admin123@mail.com. Order 123 costs $45 and 
+delivery takes 2 days. Hello World PHP
+Split Text into Parts:
+Array
+(
+ [0] => apple
+ [1] => banana
+ [2] => orange
+ [3] => grape
+)
+
+58)
+<?php
+$text = "For support contact support@example.com, for sales reach 
+sales123@shop.com or admin@mail.org";
+$pattern = "/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/";
+preg_match_all($pattern, $text, $matches);
+echo "Extracted Email Addresses:\n";
+print_r($matches[0]);
+?>
+Output:
+Extracted Email Addresses:
+Array
+(
+ [0] => support@example.com
+ [1] => sales123@shop.com
+ [2] => admin@mail.org
+)
+
+59)
+<?php
+function calculateAverage($numbers) {
+ if (empty($numbers)) {
+ return 0; // Avoid division by zero
+ }
+ $sum = array_sum($numbers); // Sum all numbers
+ $count = count($numbers); // Count total numbers
+ $average = $sum / $count; // Calculate average
+ return $average;
+}
+$nums = [10, 20, 30, 40, 50];
+$avg = calculateAverage($nums);
+echo "The average value is: " . $avg;
+?>
+Output:
+The average value is: 30
+
+60)
+<?php
+function searchValueInAssocArray($array, $valueToSearch) {
+ $foundKeys = array_keys($array, $valueToSearch); // Get all keys with the value
+ if (!empty($foundKeys)) {
+ return $foundKeys;
+ } else {
+ return false; // Value not found
+ }
+}
+$students = [
+ "John" => 85,
+ "Alice" => 90,
+ "Bob" => 75,
+ "Charlie" => 90
+];
+$searchValue = 90;
+$result = searchValueInAssocArray($students, $searchValue);
+if ($result !== false) {
+ echo "Value $searchValue found at key(s): " . implode(", ", $result);
+} else {
+ echo "Value $searchValue not found in the array.";
+}
+?>
+Output:
+Value 90 found at key(s): Alice, Charlie
+
+61)
+<?php
+$fruits = ["apple", "banana", "cherry"];
+unset($fruits[1]);
+$fruits = array_values($fruits);
+print_r($fruits);
+?>
+Output:
+Array
+(
+ [0] => apple
+ [1] => cherry
+)
+
+62)
