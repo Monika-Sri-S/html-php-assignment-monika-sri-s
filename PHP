@@ -1898,3 +1898,706 @@ Admin: admin
 You are logged in.
 
 82)
+<?php
+$simulatedCookies = [];
+$simulatedCookies['user'] = "JohnDoe";
+$simulatedCookies['session_id'] = [
+ "value" => "abc123",
+ "expires" => date("Y-m-d H:i:s", time() + 3600)
+];
+$simulatedCookies['theme'] = [
+ "value" => "dark",
+ "path" => "/"
+];
+$simulatedCookies['lang'] = [
+ "value" => "en",
+ "domain" => "example.com"
+];
+$simulatedCookies['secure_cookie'] = [
+ "value" => "secure_value",
+ "secure" => true
+];
+$simulatedCookies['httponly_cookie'] = [
+ "value" => "secret",
+ "httponly" => true
+];
+echo "=== Simulated Cookies ===\n\n";
+foreach($simulatedCookies as $name => $data){
+ echo "Name: $name\n";
+ if(is_array($data)){
+ foreach($data as $key => $value){
+ echo " $key: $value\n";
+ }
+ } else {
+ echo " Value: $data\n";
+ }
+ echo "\n";
+}
+?>
+output:
+=== Simulated Cookies ===
+Name: user
+ Value: JohnDoe
+Name: session_id
+ value: abc123
+ expires: 2025-08-15 16:32:18
+Name: theme
+ value: dark
+ path: /
+Name: lang
+ value: en
+ domain: example.com
+Name: secure_cookie
+ value: secure_value
+ secure: 1
+Name: httponly_cookie
+ value: secret
+ httponly: 1
+
+83)
+<?php
+$email = "example@gmail.com";
+if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+ $validationResult = "Valid Email";
+ $parts = explode("@", $email);
+ $domain = isset($parts[1]) ? $parts[1] : "";
+} else {
+ $validationResult = "Invalid Email";
+ $domain = "N/A";
+}
+echo "Email: $email\n";
+echo "Validation: $validationResult\n";
+echo "Domain: $domain\n";
+?>
+output:
+Email: example@gmail.com
+Validation: Valid Email
+Domain: gmail.com
+
+84)
+<?php
+session_start();
+$messages = [];
+if(!isset($_SESSION['user'])){
+ $_SESSION['user'] = "JohnDoe";
+ $messages[] = "Session variable 'user' is set to 'JohnDoe'.";
+}
+if(!isset($_SESSION['role'])){
+ $_SESSION['role'] = "Admin";
+ $messages[] = "Session variable 'role' is set to 'Admin'.";
+}
+$messages[] = "Current session data:";
+foreach($_SESSION as $key => $value){
+ $messages[] = "$key => $value";
+}
+if(isset($_SESSION['role'])){
+ unset($_SESSION['role']);
+ $messages[] = "Session variable 'role' has been removed.";
+}
+echo "=== Session Demo ===\n";
+foreach($messages as $msg){
+ echo $msg . "\n";
+}
+?>
+output:
+Session variable 'user' is set to 'JohnDoe'.
+Session variable 'role' is set to 'Admin'.
+Current session data:
+user => JohnDoe
+role => Admin
+Session variable 'role' has been removed.
+
+85)
+<?php
+$path = "/home/user/documents/report.pdf";
+$filename = basename($path);
+$filenameWithoutExt = pathinfo($path, PATHINFO_FILENAME);
+$fileExtension = pathinfo($path, PATHINFO_EXTENSION);
+$directory = pathinfo($path, PATHINFO_DIRNAME);
+echo "File Path: $path\n";
+echo "Full File Name: $filename\n";
+echo "File Name without Extension: $filenameWithoutExt\n";
+echo "File Extension: $fileExtension\n";
+echo "Directory: $directory\n";
+?>
+output:
+File Path: /home/user/documents/report.pdf
+Full File Name: report.pdf
+File Name without Extension: report
+File Extension: pdf
+Directory: /home/user/documents
+
+86)
+<?php
+$birthday = "2000-08-20";
+$today = date("Y-m-d");
+$todayObj = new DateTime($today);
+$birthdayObj = new DateTime(date("Y") . "-" . date("m-d", strtotime($birthday)));
+if($birthdayObj < $todayObj){
+ $birthdayObj->modify("+1 year");
+}
+$interval = $todayObj->diff($birthdayObj);
+$daysRemaining = $interval->days;
+echo "Today: " . $todayObj->format("Y-m-d") . "\n";
+echo "Next Birthday: " . $birthdayObj->format("Y-m-d") . "\n";
+echo "Days until birthday: $daysRemaining\n";
+?>
+output:
+Today: 2025-08-15
+Next Birthday: 2025-08-20
+Days until birthday: 5
+
+87)
+<?php
+session_start();
+$admin_username = "admin";
+$admin_password = "admin123";
+$messages = [];
+$input_username = "admin"; // Replace with test username
+$input_password = "admin123"; // Replace with test password
+$action = "login"; // "login" or "logout"
+if($action === "login"){
+ if($input_username === $admin_username && $input_password === 
+$admin_password){
+ $_SESSION['admin'] = $input_username;
+ $messages[] = "Login successful! Welcome, $input_username.";
+ } else {
+ $messages[] = "Invalid username or password!";
+ }
+}
+if($action === "logout" && isset($_SESSION['admin'])){
+ unset($_SESSION['admin']);
+ $messages[] = "You have been logged out.";
+}
+if(isset($_SESSION['admin'])){
+ $messages[] = "Admin '{$_SESSION['admin']}' is currently logged in.";
+} else {
+ $messages[] = "No admin is logged in.";
+}
+echo "=== Admin Login/Logout Simulation ===\n";
+foreach($messages as $msg){
+ echo $msg . "\n";
+}
+?>
+output:
+Login successful! Welcome, admin.
+Admin 'admin' is currently logged in.
+
+88)
+<?php
+$birthday = "2000-08-20";
+$today = date("Y-m-d");
+$todayObj = new DateTime($today);
+$birthdayObj = new DateTime(date("Y") . "-" . date("m-d", strtotime($birthday)));
+// If birthday has already passed this year, use next year
+if($birthdayObj < $todayObj){
+ $birthdayObj->modify("+1 year");
+}
+$interval = $todayObj->diff($birthdayObj);
+$daysRemaining = $interval->days;
+echo "Today: " . $todayObj->format("Y-m-d") . "\n";
+echo "Next Birthday: " . $birthdayObj->format("Y-m-d") . "\n";
+echo "Days until birthday: $daysRemaining\n";
+?>
+output:
+Today: 2025-08-15
+Next Birthday: 2025-08-20
+Days until birthday: 5
+
+89)
+<?php
+$filename = "example.txt";
+$simulatedFileContent = "Hello, this is a sample file.\nThis is the second line.\n";
+echo "Reading file '$filename' (simulated):\n\n";
+$content = $simulatedFileContent; // Normally: file_get_contents($filename)
+echo $content;
+echo "\nReading line by line (simulated using fopen/fread):\n";
+$lines = explode("\n", $simulatedFileContent); // simulate reading lines
+foreach($lines as $line){
+ if(!empty($line)){
+ echo $line . "\n";
+ }
+}
+?>
+output:
+Reading file 'example.txt' (simulated):
+Hello, this is a sample file.
+This is the second line.
+Reading line by line (simulated using fopen/fread):
+Hello, this is a sample file.
+This is the second line.
+
+90)
+<?php
+$filename = "sample.txt";
+$fileContent = "Hello, this is the first line of the file.\n";
+$fileContent .= "This is the second line.\n";
+$fileContent .= "And this is the third line.\n";
+echo "Opening file '$filename' and printing all data (simulated):\n\n";
+echo $fileContent;
+echo "\nReading line by line (simulated):\n";
+$lines = explode("\n", $fileContent); // Split content into lines
+foreach($lines as $line){
+ if(!empty($line)){
+ echo $line . "\n";
+ }
+}
+?>
+output:
+Opening file 'sample.txt' and printing all data (simulated):
+Hello, this is the first line of the file.
+This is the second line.
+And this is the third line.
+Reading line by line (simulated):
+Hello, this is the first line of the file.
+This is the second line.
+And this is the third line.
+
+91)
+<?php
+session_start();
+$_SESSION['username'] = 'Alice';
+$_SESSION['role'] = 'Admin';
+echo "Session Data:\n";
+echo "Username: " . $_SESSION['username'] . "\n";
+echo "Role: " . $_SESSION['role'] . "\n";
+unset($_SESSION['role']);
+echo "\nAfter removing 'role':\n";
+echo "Role: " . (isset($_SESSION['role']) ? $_SESSION['role'] : 'Not set') . "\n";
+?>
+OUTPUT:
+Session Data:
+Username: Alice
+Role: Admin
+After removing 'role':
+Role: Not set
+
+92)
+<?php
+$cookie_name = "user";
+$cookie_value = "Alice";
+setcookie($cookie_name, $cookie_value, time() + 3600, "/"); // "/" means available 
+across the site
+echo "=== Cookie Example ===\n";
+if(isset($_COOKIE[$cookie_name])){
+ $value = $_COOKIE[$cookie_name];
+ echo "Cookie '$cookie_name' value: $value\n";
+} else {
+ echo "Cookie '$cookie_name' is not set yet. It will be available on next request.\n";
+}
+?>
+Output:
+Cookie 'user' is not set yet. It will be available on next request.
+
+93)
+<?php
+$cookie_name = "visit_count";
+if(isset($_COOKIE[$cookie_name])){
+ $visit_count = $_COOKIE[$cookie_name] + 1;
+} else {
+ $visit_count = 1;
+}
+setcookie($cookie_name, $visit_count, time() + (365*24*60*60), "/");
+echo "You have visited this page $visit_count time(s).\n";
+?>
+Output:
+You have visited this page 1 time(s).
+
+94)
+<?php
+$fileContent = "";
+$fileContent = "This is written using 'w' mode.\n";
+echo "After 'w' mode:\n$fileContent\n";
+$fileContent .= "This is appended using 'a' mode.\n";
+echo "After 'a' mode:\n$fileContent\n";
+echo "Reading content (r mode simulated):\n$fileContent\n";
+$fileContent .= "Adding text using 'r+' mode.\n";
+echo "After 'r+' mode:\n$fileContent\n";
+$fileContent = "Overwriting content using 'w+' mode.\n";
+echo "After 'w+' mode:\n$fileContent\n";
+?>
+Output:
+After 'w' mode:
+This is written using 'w' mode.
+After 'a' mode:
+This is written using 'w' mode.
+This is appended using 'a' mode.
+Reading content (r mode simulated):
+This is written using 'w' mode.
+This is appended using 'a' mode.
+After 'r+' mode:
+This is written using 'w' mode.
+This is appended using 'a' mode.
+Adding text using 'r+' mode.
+After 'w+' mode:
+Overwriting content using 'w+' mode.
+
+95)
+<?php
+session_start();
+if (!isset($_SESSION['cart'])) {
+ $_SESSION['cart'] = [];
+}
+$action = $_GET['action'] ?? ''; // 'add', 'remove', or empty
+$productId = $_GET['id'] ?? '';
+$productName = $_GET['name'] ?? '';
+$productPrice = $_GET['price'] ?? '';
+function addToCart($id, $name, $price) {
+ $_SESSION['cart'][] = [
+ 'id' => $id,
+ 'name' => $name,
+ 'price' => $price
+ ];
+}
+function removeFromCart($id) {
+ foreach ($_SESSION['cart'] as $key => $item) {
+ if ($item['id'] == $id) {
+ unset($_SESSION['cart'][$key]);
+ }
+ }
+ $_SESSION['cart'] = array_values($_SESSION['cart']);
+}
+if ($action === 'add' && $productId && $productName && $productPrice) {
+ addToCart($productId, $productName, $productPrice);
+}
+if ($action === 'remove' && $productId) {
+ removeFromCart($productId);
+}
+echo "=== Your Shopping Cart ===\n";
+if (empty($_SESSION['cart'])) {
+ echo "Cart is empty.\n";
+} else {
+ $total = 0;
+ foreach ($_SESSION['cart'] as $item) {
+ echo $item['name'] . " - ₹" . $item['price'] . " [ID: " . $item['id'] . "]\n";
+ $total += $item['price'];
+ }
+ echo "Total: ₹$total\n";
+}
+echo "\n=== Simulated Actions ===\n";
+echo "Add T-shirt: ?action=add&id=101&name=T-shirt&price=299\n";
+echo "Add Jeans: ?action=add&id=102&name=Jeans&price=799\n";
+echo "Remove T-shirt: ?action=remove&id=101\n";
+echo "Clear Cart: ?action=clear\n";
+// Optional: Clear entire cart
+if ($action === 'clear') {
+ $_SESSION['cart'] = [];
+ echo "Cart cleared.\n";
+}
+?>
+Output:
+Cart is empty.
+=== Simulated Actions ===
+Add T-shirt: ?action=add&id=101&name=T-shirt&price=299
+Add Jeans: ?action=add&id=102&name=Jeans&price=799
+Remove T-shirt: ?action=remove&id=101
+Clear Cart: ?action=clear
+
+96)
+<?php
+session_start();
+$_SESSION['username'] = "Alice";
+$_SESSION['role'] = "Admin";
+echo "Username stored in session: " . $_SESSION['username'] . "\n";
+echo "Role stored in session: " . $_SESSION['role'] . "\n";
+?>
+Output:
+Username stored in session: Alice
+Role stored in session: Admin
+
+97)
+<?php
+if(session_status() == PHP_SESSION_NONE){
+ session_start();
+ echo "Session started.\n";
+}
+$_SESSION['username'] = 'Alice';
+$_SESSION['role'] = 'Admin';
+echo "Session variables set: username = {$_SESSION['username']}, role = 
+{$_SESSION['role']}\n";
+echo "Session ID: " . session_id() . "\n";
+echo "Session Name: " . session_name() . "\n";
+session_regenerate_id();
+echo "New Session ID after regeneration: " . session_id() . "\n";
+session_write_close();
+echo "Session data saved and session closed.\n";
+session_start();
+echo "Accessing session variables after reopening: username = 
+{$_SESSION['username']}\n";
+session_unset();
+echo "Session variables unset. Username now: " . (isset($_SESSION['username']) ? 
+$_SESSION['username'] : 'Not set') . "\n";
+session_destroy();
+echo "Session destroyed.\n";
+?>
+Output:
+Session started.
+Session variables set: username = Alice, role = Admin
+Session ID: be8dbf956f72aff2bfa171d2cbf8c09d
+Session Name: PHPSESSID
+Warning: session_regenerate_id(): Session ID cannot be regenerated after headers have 
+already been sent in /tmp/DVUGysJBtt/main.php on line 18
+New Session ID after regeneration: be8dbf956f72aff2bfa171d2cbf8c09d
+Session data saved and session closed.
+Warning: session_start(): Session cannot be started after headers have already been 
+sent in /tmp/DVUGysJBtt/main.php on line 26
+Accessing session variables after reopening: username = Alice
+Session variables unset. Username now: Alice
+Warning: session_destroy(): Trying to destroy uninitialized session in 
+/tmp/DVUGysJBtt/main.php on line 34
+Session destroyed.
+
+98)
+<?php
+$action = $_POST['action'] ?? '';
+$username = $_POST['username'] ?? '';
+$password = $_POST['password'] ?? '';
+$admin_user = "admin";
+$admin_pass = "12345";
+$logged_in = false;
+$message = '';
+if ($action === "login") {
+ if ($username === $admin_user && $password === $admin_pass) {
+ $logged_in = true;
+ $message = " Login successful! Welcome, $username.<br><br>";
+ } else {
+ $message = " Invalid username or password.<br><br>";
+ }
+}
+if ($action === "logout") {
+ $message = " You have been logged out.<br><br>";
+}
+echo $message;
+if ($logged_in) {
+ echo "<h2>Admin Dashboard</h2>";
+ echo "Hello, $username!<br><br>";
+ echo '
+ <form method="post">
+ <input type="hidden" name="action" value="logout">
+ <input type="submit" value="Logout">
+ </form>
+ ';
+} else {
+ echo '
+ <h2>Admin Login</h2>
+ <form method="post">
+ <input type="hidden" name="action" value="login">
+ Username: <input type="text" name="username" required><br><br>
+ Password: <input type="password" name="password" required><br><br>
+ <input type="submit" value="Login">
+ </form>
+ ';
+}
+?>
+Output:
+A module you have imported isn't available at the moment. It will be available soon.
+
+99)
+<?php
+// (a) Initiate session
+session_start();
+// (b) Check if counter exists
+if (!isset($_SESSION['visit_count'])) {
+ $_SESSION['visit_count'] = 0; // new session
+}
+// (c) Increment counter
+$_SESSION['visit_count']++;
+// (d) Store back
+$visits = $_SESSION['visit_count'];
+// (f) Initialize uploaded files array
+if (!isset($_SESSION['uploaded_files'])) {
+ $_SESSION['uploaded_files'] = [];
+}
+$msg = "";
+if (PHP_SAPI === 'cli') {
+ echo "Enter a file name to upload (or leave empty to skip): ";
+ $filename = trim(fgets(STDIN));
+ if ($filename !== "") {
+ if (in_array($filename, $_SESSION['uploaded_files'])) {
+ $msg = "Error: File '$filename' already uploaded!\n";
+ } else {
+ $_SESSION['uploaded_files'][] = $filename;
+ $msg = "File '$filename' uploaded successfully!\n";
+ }
+ }
+}
+echo "=== Page Visit Counter ===\n";
+echo "You have visited this page $visits times.\n";
+echo "\n=== File Upload Simulation ===\n";
+if ($msg) echo $msg;
+if (!empty($_SESSION['uploaded_files'])) {
+ echo "Files uploaded in this session:\n";
+ foreach ($_SESSION['uploaded_files'] as $f) {
+ echo " - $f\n";
+ }
+} else {
+ echo "No files uploaded yet.\n";
+}
+Output:
+Enter a file name to upload (or leave empty to skip): madhu
+=== Page Visit Counter ===
+You have visited this page 1 times.
+=== File Upload Simulation ===
+File 'madhu' uploaded successfully!
+Files uploaded in this session:
+- monika sri s
+
+100)
+<?php
+/**
+* Duplicate Upload Guard
+* - CLI (online compiler): simulates uploads by asking for filenames; prevents 
+duplicates.
+* - Web server (XAMPP/WAMP): real <input type="file"> upload; prevents duplicates in 
+/uploads.
+*/
+if (PHP_SAPI === 'cli') {
+ // ---------- CLI MODE (online compiler friendly) ----------
+ $index = [];
+ // Optional persistence if the environment allows writing files
+ $indexFile = __DIR__ . '/uploads_index.json';
+ if (is_readable($indexFile)) {
+ $data = json_decode(@file_get_contents($indexFile), true);
+ if (is_array($data)) $index = $data;
+ }
+ echo "=== Duplicate Upload Guard (Simulation) ===\n";
+ echo "Type file names to 'upload'. Press Enter on an empty line to finish.\n\n";
+ while (true) {
+ echo "Filename: ";
+ $line = fgets(STDIN);
+ if ($line === false) break;
+ $name = trim($line);
+ if ($name === '') break;
+ if (isset($index[$name])) {
+ echo " Error: '$name' already exists. Please upload a different file.\n";
+ } else {
+ $index[$name] = true;
+ echo " Uploaded: '$name'\n";
+ }
+ }
+ @file_put_contents($indexFile, json_encode($index, JSON_PRETTY_PRINT));
+ echo "\nRecorded files this run:\n";
+ if ($index) {
+ foreach (array_keys($index) as $n) echo " - $n\n";
+ } else {
+ echo " (none)\n";
+ }
+ exit;
+}
+// ---------- WEB MODE (real server) ----------
+session_start();
+$msg = '';
+if (!empty($_FILES['file']['name'])) {
+ $uploadDir = __DIR__ . '/uploads/';
+ if (!is_dir($uploadDir)) { @mkdir($uploadDir, 0777, true); }
+ $name = basename($_FILES['file']['name']);
+ $path = $uploadDir . $name;
+ if (file_exists($path)) {
+ $msg = "<p style='color:red'>Error: <b>{$name}</b> already exists. Please upload a 
+different file.</p>";
+ } elseif (is_uploaded_file($_FILES['file']['tmp_name']) && 
+move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
+ $msg = "<p style='color:green'>Uploaded <b>{$name}</b> successfully.</p>";
+ } else {
+ $msg = "<p style='color:red'>Upload failed.</p>";
+ }
+}
+?>
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Duplicate Upload Guard</title></head>
+<body>
+<h2>Duplicate Upload Guard</h2>
+<form method="post" enctype="multipart/form-data">
+ <input type="file" name="file" required>
+ <button type="submit">Upload</button>
+</form>
+<?php echo $msg; ?>
+</body>
+</html>
+Output:
+=== Duplicate Upload Guard (Simulation) ===
+Type file names to 'upload'. Press Enter on an empty line to finish.
+Filename: MM
+ Uploaded: 'MM'
+Filename: MKMK
+ Uploaded: 'MKMK'
+
+101)
+<?php
+setcookie("username", "JohnDoe", time() + 3600, "/");
+if(isset($_COOKIE["username"])) {
+ echo "Cookie value is: " . $_COOKIE["username"];
+} else {
+ echo "Cookie is not set yet!";
+}
+?>
+Output:
+Cookie is not set yet!
+
+102)
+<?php
+session_start();
+if(!isset($_SESSION["username"])) {
+ $_SESSION["username"] = "JohnDoe";
+ echo "Session started and variable set!<br>";
+} else {
+ echo "Session already active.<br>";
+}
+echo "Username stored in session is: " . $_SESSION["username"];
+?>
+Output:
+Session started and variable set!<br>Username stored in session is: JohnDoe
+
+103)
+<?php
+session_start();
+if(isset($_SESSION['views'])) {
+ $_SESSION['views'] = $_SESSION['views'] + 1; // Increment counter
+} else {
+ $_SESSION['views'] = 1; // First visit
+}
+echo "You have visited this page " . $_SESSION['views'] . " times.";
+?>
+Output:
+You have visited this page 1 times.
+
+104)
+<?php
+$filename = "sample.txt";
+$n = 3;
+if(file_exists($filename)) {
+ $file = file($filename); // Reads entire file into an array (each line = array element)
+ if(isset($file[$n - 1])) {
+ echo "Line $n: " . htmlspecialchars($file[$n - 1]);
+ } else {
+ echo "no data";
+ }
+} else {
+ echo "File not found.";
+}
+?>
+Output:
+File not found.
+
+105)
+year. Sample week and year: 12, 2014.
+<?php
+function getStartAndEndDate($week, $year) {
+ // Create a DateTime object with ISO week format
+ $dto = new DateTime();
+ $dto->setISODate($year, $week);
+ // Start of the week (Monday)
+ $start = $dto->format('Y-m-d');
+ // End of the week (Sunday)
+ $dto->modify('+6 days');
+ $end = $dto->format('Y-m-d');
+ return array($start, $end);
+}
+// Example usage
+list($startDate, $endDate) = getStartAndEndDate(12, 2014);
+echo "Week 12 of 2014 starts on: " . $startDate . "<br>";
+echo "Week 12 of 2014 ends on: " . $endDate;
+?>
+Output:
+Week 12 of 2014 starts on: 2014-03-17<br>Week 12 of 2014 ends on: 2014-03-23
