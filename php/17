@@ -1,0 +1,32 @@
+17)<?php
+$balance = 5000; 
+function deposit($amount, &$balance) {
+    if ($amount > 0) {
+        $balance += $amount;
+        echo "Deposited: ₹$amount <br>";
+    } else {
+        echo "Invalid deposit amount.<br>";
+    }
+}
+function withdraw($amount, &$balance) {
+    if ($amount > 0) {
+        if ($amount <= $balance) {
+            $balance -= $amount;
+            echo "Withdrawn: ₹$amount <br>";
+        } else {
+            echo "Insufficient balance.<br>";
+        }
+    } else {
+        echo "Invalid withdrawal amount.<br>";
+    }
+}
+echo "<h2>Bank Transactions</h2>";
+echo "Opening Balance: ₹$balance <br><br>";
+deposit(2000, $balance);
+withdraw(1000, $balance);
+?>
+Output:
+Bank Transactions
+Opening Balance: ₹5000 
+Deposited: ₹2000 
+Withdrawn: ₹1000 
