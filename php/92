@@ -1,0 +1,16 @@
+92)
+<?php
+$cookie_name = "user";
+$cookie_value = "Alice";
+setcookie($cookie_name, $cookie_value, time() + 3600, "/"); // "/" means available 
+across the site
+echo "=== Cookie Example ===\n";
+if(isset($_COOKIE[$cookie_name])){
+ $value = $_COOKIE[$cookie_name];
+ echo "Cookie '$cookie_name' value: $value\n";
+} else {
+ echo "Cookie '$cookie_name' is not set yet. It will be available on next request.\n";
+}
+?>
+Output:
+Cookie 'user' is not set yet. It will be available on next request.
