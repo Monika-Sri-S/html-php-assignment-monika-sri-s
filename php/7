@@ -1,0 +1,13 @@
+7)
+<?php
+$name = "Monika"; // Change this to "" to simulate blank input
+if (trim($name) == "") {
+    echo "Error: Name field cannot be empty!";
+} else {
+    echo "Hello, $name! Welcome to Everyone!<br>";
+    echo "Have a nice day!!";
+}
+?>
+output:
+Hello, Monika! Welcome to Everyone!
+Have a nice day!!
