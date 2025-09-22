@@ -1,0 +1,16 @@
+66)
+<?php
+$fruits = ["Apple", "Banana", "Cherry"];
+echo "Using count(): " . count($fruits) . "<br>";
+echo "Using sizeof(): " . sizeof($fruits) . "<br>";
+$multiArray = ["Apple", "Banana", ["Cherry", "Mango"]];
+echo "count() normal mode: " . count($multiArray) . "<br>";
+echo "count() recursive mode: " . count($multiArray, COUNT_RECURSIVE) . "<br>";
+echo "sizeof() recursive mode: " . sizeof($multiArray, COUNT_RECURSIVE) . "<br>";
+?>
+Output:
+Using count(): 3<br>
+Using sizeof(): 3<br>count() 
+normal mode: 3<br>count() 
+recursive mode: 5<br>sizeof() 
+recursive mode: 5<br>
