@@ -1,0 +1,20 @@
+40)
+<?php
+$text = "Hello@# World! 123_Ready?";
+$chars = str_split($text);
+$allowed = array_merge(
+ range('a', 'z'),
+ range('A', 'Z'),
+ range('0', '9'),
+ array(" ")
+);
+$resultArray = array_filter($chars, function($char) use ($allowed) {
+ return in_array($char, $allowed);
+});
+$cleaned = implode("", $resultArray);
+echo "Original: $text\n";
+echo "Cleaned: $cleaned\n";
+?>
+output:
+Original: Hello@# World! 123_Ready?
+Cleaned: Hello World 123Ready
