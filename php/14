@@ -1,0 +1,29 @@
+14)<?php
+function addNumbers($num1, $num2) {
+    return $num1 + $num2;
+}
+$result = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $number1 = $_POST['number1'];
+    $number2 = $_POST['number2'];
+    $result = addNumbers($number1, $number2);
+}
+?>
+<html>
+<head>
+    <title>Sum of Two Numbers</title>
+</head>
+<body>
+<h2>Add Two Numbers</h2>
+<form method="post">
+    Number 1: <input type="number" name="number1" required><br><br>
+    Number 2: <input type="number" name="number2" required><br><br>
+    <input type="submit" value="Add">
+</form>
+<?php
+if ($result !== "") {
+    echo "<h3>Result: $result</h3>";
+}
+?>
+</body>
+</html>
