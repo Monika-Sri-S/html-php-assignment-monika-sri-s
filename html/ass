@@ -1,0 +1,73 @@
+
+3)
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Monikia Sri S | Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Monikia Sri S</h1>
+    <p>Web Developer & Designer</p>
+  </header>
+
+  <!-- Navigation Menu -->
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main>
+    <!-- About Section -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Hi, I'm <strong>Monikia Sri S</strong>, a creative and detail-oriented web developer with a passion for building modern, responsive, and user-friendly websites and applications. I enjoy learning new technologies and continuously improving my skills.
+      </p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2>My Projects</h2>
+      <div class="project-list">
+        <article class="project">
+          <h3>Portfolio Website</h3>
+          <p>A personal portfolio built with HTML5 and CSS3 to showcase my skills, projects, and contact information.</p>
+        </article>
+
+        <article class="project">
+          <h3>Task Manager App</h3>
+          <p>A simple task management tool built with JavaScript and localStorage. Users can add, complete, and delete tasks.</p>
+        </article>
+
+        <article class="project">
+          <h3>Responsive Blog</h3>
+          <p>A clean and responsive blog template using Flexbox and media queries. Optimized for both mobile and desktop views.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:monikiasri@example.com">monikiasri@example.com</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/monikiasri" target="_blank">linkedin.com/in/monikiasri</a></p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Monikia Sri S. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
+)
