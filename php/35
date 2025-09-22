@@ -1,0 +1,20 @@
+35)
+<?php
+$strings = array(
+ "I love PHP programming",
+ "JavaScript is fun",
+ "PHP is great for web development"
+);
+$search = "PHP";
+foreach ($strings as $text) {
+ if (strpos($text, $search) !== false) { 
+ echo "The string '$text' contains '$search'.<br>";
+ } else {
+ echo "The string '$text' does NOT contain '$search'.<br>";
+ }
+}
+?>
+Output:
+The string 'I love PHP programming' contains 'PHP'.<br>The string 'JavaScript is fun' 
+does NOT contain 'PHP'.<br>The string 'PHP is great for web development' contains 
+'PHP'.<br>
