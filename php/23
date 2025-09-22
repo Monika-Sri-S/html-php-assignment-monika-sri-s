@@ -1,0 +1,21 @@
+23)
+<?php
+if (isset($_GET['city'])) {
+    $city = $_GET['city'];
+    echo "Showing weather for: $city<br>";
+}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password']; // Normally you'd verify this
+    echo "Welcome, $username!<br>";
+}
+?>
+<html>
+<head>
+    <title>GET vs POST Example</title>
+</head>
+<body>
+<h2>Check Weather (GET)</h2>
+<form method="get">
+    City: <input type="text" name="city" required>
+    <input type="submit" value="Check">
