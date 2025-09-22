@@ -1,0 +1,13 @@
+
+43)
+<?php
+$password = "Hello@123"; // Change to test different passwords
+$pattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+if (preg_match($pattern, $password)) {
+ echo " Valid password";
+} else {
+ echo " Invalid password";
+}
+?>
+Output:
+ Valid password
