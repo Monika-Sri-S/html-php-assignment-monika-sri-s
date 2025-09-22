@@ -1,0 +1,53 @@
+52)
+<?php
+echo "=== STACK (LIFO) Example ===\n";
+$stack = array();
+array_push($stack, "A");
+array_push($stack, "B");
+array_push($stack, "C");
+echo "Stack after pushes: ";
+print_r($stack);
+$popped = array_pop($stack);
+echo "Popped from stack: $popped\n";
+echo "Stack after pop: ";
+print_r($stack);
+echo "\n";
+echo "=== QUEUE (FIFO) Example ===\n";
+$queue = array();
+array_push($queue, "A");
+array_push($queue, "B");
+array_push($queue, "C");
+echo "Queue after enqueue: ";
+print_r($queue);
+$dequeued = array_shift($queue);
+echo "Dequeued from queue: $dequeued\n";
+echo "Queue after dequeue: ";
+print_r($queue);
+?>
+Output:
+=== STACK (LIFO) Example ===
+Stack after pushes: Array
+(
+ [0] => A
+ [1] => B
+ [2] => C
+)
+Popped from stack: C
+Stack after pop: Array
+(
+ [0] => A
+ [1] => B
+)
+=== QUEUE (FIFO) Example ===
+Queue after enqueue: Array
+(
+ [0] => A
+ [1] => B
+ [2] => C
+)
+Dequeued from queue: A
+Queue after dequeue: Array
+(
+ [0] => B
+ [1] => C
+)
