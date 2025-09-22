@@ -1,0 +1,18 @@
+91)
+<?php
+session_start();
+$_SESSION['username'] = 'Alice';
+$_SESSION['role'] = 'Admin';
+echo "Session Data:\n";
+echo "Username: " . $_SESSION['username'] . "\n";
+echo "Role: " . $_SESSION['role'] . "\n";
+unset($_SESSION['role']);
+echo "\nAfter removing 'role':\n";
+echo "Role: " . (isset($_SESSION['role']) ? $_SESSION['role'] : 'Not set') . "\n";
+?>
+OUTPUT:
+Session Data:
+Username: Alice
+Role: Admin
+After removing 'role':
+Role: Not set
