@@ -1,0 +1,12 @@
+65)
+<?php
+$mainString = "Welcome to the world of PHP programming!";
+$searchString = "PHP";
+if (strpos($mainString, $searchString) !== false) {
+ echo "The string '$searchString' was found in the main string.";
+} else {
+ echo "The string '$searchString' was NOT found in the main string.";
+}
+?>
+Output:
+The string 'PHP' was found in the main string.
