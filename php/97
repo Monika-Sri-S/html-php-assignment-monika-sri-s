@@ -1,0 +1,42 @@
+97)
+<?php
+if(session_status() == PHP_SESSION_NONE){
+ session_start();
+ echo "Session started.\n";
+}
+$_SESSION['username'] = 'Alice';
+$_SESSION['role'] = 'Admin';
+echo "Session variables set: username = {$_SESSION['username']}, role = 
+{$_SESSION['role']}\n";
+echo "Session ID: " . session_id() . "\n";
+echo "Session Name: " . session_name() . "\n";
+session_regenerate_id();
+echo "New Session ID after regeneration: " . session_id() . "\n";
+session_write_close();
+echo "Session data saved and session closed.\n";
+session_start();
+echo "Accessing session variables after reopening: username = 
+{$_SESSION['username']}\n";
+session_unset();
+echo "Session variables unset. Username now: " . (isset($_SESSION['username']) ? 
+$_SESSION['username'] : 'Not set') . "\n";
+session_destroy();
+echo "Session destroyed.\n";
+?>
+Output:
+Session started.
+Session variables set: username = Alice, role = Admin
+Session ID: be8dbf956f72aff2bfa171d2cbf8c09d
+Session Name: PHPSESSID
+Warning: session_regenerate_id(): Session ID cannot be regenerated after headers have 
+already been sent in /tmp/DVUGysJBtt/main.php on line 18
+New Session ID after regeneration: be8dbf956f72aff2bfa171d2cbf8c09d
+Session data saved and session closed.
+Warning: session_start(): Session cannot be started after headers have already been 
+sent in /tmp/DVUGysJBtt/main.php on line 26
+Accessing session variables after reopening: username = Alice
+Session variables unset. Username now: Alice
+Warning: session_destroy(): Trying to destroy uninitialized session in 
+/tmp/DVUGysJBtt/main.php on line 34
+Session destroyed.
+
