@@ -1,0 +1,26 @@
+37)
+<?php
+$fruits = array("Apple", "Banana");
+array_push($fruits, "Cherry", "Mango");
+echo "After Push: ";
+print_r($fruits);
+$removed = array_pop($fruits);
+echo "Removed: $removed\n";
+echo "After Pop: ";
+print_r($fruits);
+?>
+Output:
+After Push: Array
+(
+ [0] => Apple
+ [1] => Banana
+ [2] => Cherry
+ [3] => Mango
+)
+Removed: Mango
+After Pop: Array
+(
+ [0] => Apple
+ [1] => Banana
+ [2] => Cherry
+)
