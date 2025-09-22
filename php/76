@@ -1,0 +1,19 @@
+76)
+<?php
+$birthdayMonth = 12;
+$birthdayDay = 25;
+$today = new DateTime();
+$birthdayThisYear = new DateTime($today->format('Y') . "-$birthdayMonth-
+$birthdayDay");
+if ($birthdayThisYear < $today) {
+$birthdayNext = new DateTime(($today->format('Y') + 1) . "-$birthdayMonth-
+$birthdayDay");
+} else {
+$birthdayNext = $birthdayThisYear;
+}
+$interval = $today->diff($birthdayNext);
+$daysLeft = $interval->days;
+echo "Your birthday is in $daysLeft day(s)!";
+?>
+Output:
+Your birthday is in 131 day(s)!
