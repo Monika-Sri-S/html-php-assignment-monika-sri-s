@@ -1,0 +1,10 @@
+1)
+<? php
+$capital=67;
+print(“Variable capital is $capital”);
+print(“Variable CaPiTaL is $CaPiTaL”);
+?>
+output:
+Variable capital is 67
+Variable CaPiTaL is 67
+=== Code Execution Successful ===
