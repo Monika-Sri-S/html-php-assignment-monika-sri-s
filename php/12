@@ -1,0 +1,7 @@
+12)
+<?php
+$sub = substr((string)12345, 2, 2);
+echo "sub is $sub";
+?>
+Output:
+sub is 34
