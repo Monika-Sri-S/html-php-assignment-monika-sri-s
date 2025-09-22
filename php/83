@@ -1,0 +1,19 @@
+83)
+<?php
+$email = "example@gmail.com";
+if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+ $validationResult = "Valid Email";
+ $parts = explode("@", $email);
+ $domain = isset($parts[1]) ? $parts[1] : "";
+} else {
+ $validationResult = "Invalid Email";
+ $domain = "N/A";
+}
+echo "Email: $email\n";
+echo "Validation: $validationResult\n";
+echo "Domain: $domain\n";
+?>
+output:
+Email: example@gmail.com
+Validation: Valid Email
+Domain: gmail.com
