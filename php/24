@@ -1,0 +1,37 @@
+24)
+<?php
+$text = "  Hello World from PHP!  ";
+echo "Original String: '$text'<br><br>";
+echo "Trim: '" . trim($text) . "'<br>";
+echo "Lowercase: " . strtolower($text) . "<br>";
+echo "Uppercase: " . strtoupper($text) . "<br>";
+echo "Length: " . strlen($text) . "<br>";
+echo "Word Count: " . str_word_count($text) . "<br>";
+echo "Reversed: " . strrev($text) . "<br>";
+echo "Replace 'PHP' with 'Programming': " . str_replace("PHP", "Programming", $text) . "<br>";
+echo "Position of 'World': " . strpos($text, "World") . "<br>";
+echo "Substring (chars 2 to 8): " . substr($text, 2, 7) . "<br>";
+echo "Repeat 3 times: " . str_repeat("Hi! ", 3) . "<br>";
+echo "Shuffled: " . str_shuffle($text) . "<br>";
+echo "Compare 'apple' & 'banana': " . strcmp("apple", "banana") . "<br>";
+echo "Add Slashes: " . addslashes($text) . "<br>";
+$html = "<b>Hello</b> <i>World</i>";
+echo "Remove HTML tags: " . strip_tags($html) . "<br>";
+?>
+Output:
+Original String: ' Hello World from PHP! '
+Trim: 'Hello World from PHP!'
+Lowercase: hello world from php! 
+Uppercase: HELLO WORLD FROM PHP! 
+Length: 25
+Word Count: 4
+Reversed: !PHP morf dlroW olleH 
+Replace 'PHP' with 'Programming': Hello World from Programming! 
+Position of 'World': 8
+Substring (chars 2 to 8): Hello W
+Repeat 3 times: Hi! Hi! Hi! 
+Shuffled: mlH l Hfr oeldo o WP!Pr
+Compare 'apple' & 'banana': -1
+Add Slashes: Hello World from PHP! 
+Remove HTML tags: Hello World
+
