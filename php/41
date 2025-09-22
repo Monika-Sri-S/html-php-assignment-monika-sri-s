@@ -1,0 +1,15 @@
+41)
+<?php
+$text = "Contact us at admin@example.com or support@mydomain.org. 
+You can also email john.doe123@company.co.uk for more info.";
+$pattern = '/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}/i';
+preg_match_all($pattern, $text, $matches);
+$emails = $matches[0];
+print_r($emails);
+?>
+Output:
+(
+ [0] => admin@example.com
+ [1] => support@mydomain.org
+ [2] => john.doe123@company.co.uk
+)
