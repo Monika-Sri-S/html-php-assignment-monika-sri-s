@@ -1,0 +1,13 @@
+61)
+<?php
+$fruits = ["apple", "banana", "cherry"];
+unset($fruits[1]);
+$fruits = array_values($fruits);
+print_r($fruits);
+?>
+Output:
+Array
+(
+ [0] => apple
+ [1] => cherry
+)
