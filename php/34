@@ -1,0 +1,9 @@
+34)
+<?php
+$text = "The sky is blue. Blue is my favorite color. I like blue skies.";
+$result = preg_replace("/\bblue\b/i", "green", $text);
+echo $result;
+?>
+Output:
+The value in the second row, third column is: 6
+
