@@ -1,0 +1,14 @@
+79)
+<?php
+$file1Content = "This is content of file1.\nLine 2 of file1.";
+$file2Content = "This is content of file2.\nLine 2 of file2.";
+$combinedContent = $file1Content . "\n" . $file2Content;
+echo "=== Combined File Content ===\n";
+echo $combinedContent;
+?>
+OUTPUT:
+=== Combined File Content ===
+This is content of file1.
+Line 2 of file1.
+This is content of file2.
+Line 2 of file2.
