@@ -1,0 +1,11 @@
+25)
+<?php
+$text = "The Thing will come to you soon";
+$newText = preg_replace('/the/i', 'best', $text, 1);
+echo "Original: $text<br>";
+echo "Modified: $newText";
+?>
+Output:
+Original: The Thing will come to you soon
+Modified: best Thing will come to you soon
+
