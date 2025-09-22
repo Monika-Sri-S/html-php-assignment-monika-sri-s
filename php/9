@@ -1,0 +1,25 @@
+8)
+<?php
+function deal() {
+    $costA = 25;
+    $sizeA = 11;
+    $costB = 23;
+    $sizeB = 9;
+    $costPerUnitA = $costA / $sizeA;
+    $costPerUnitB = $costB / $sizeB;
+    echo "Cost per ml of Drink A: " . round($costPerUnitA, 2) . " Rs/ml<br>";
+    echo "Cost per ml of Drink B: " . round($costPerUnitB, 2) . " Rs/ml<br>";
+    if ($costPerUnitA < $costPerUnitB) {
+        echo "<strong>Choose Drink A to save money.</strong>";
+    } elseif ($costPerUnitB < $costPerUnitA) {
+        echo "<strong>Choose Drink B to save money.</strong>";
+    } else {
+        echo "<strong>Both drinks cost the same per unit. Choose any.</strong>";
+    }
+}
+deal();
+?>
+output:
+Cost per ml of Drink A: 2.27 Rs/ml
+Cost per ml of Drink B: 2.56 Rs/ml
+Choose Drink A to save money.
