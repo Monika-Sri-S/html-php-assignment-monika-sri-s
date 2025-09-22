@@ -1,0 +1,35 @@
+87)
+<?php
+session_start();
+$admin_username = "admin";
+$admin_password = "admin123";
+$messages = [];
+$input_username = "admin"; // Replace with test username
+$input_password = "admin123"; // Replace with test password
+$action = "login"; // "login" or "logout"
+if($action === "login"){
+ if($input_username === $admin_username && $input_password === 
+$admin_password){
+ $_SESSION['admin'] = $input_username;
+ $messages[] = "Login successful! Welcome, $input_username.";
+ } else {
+ $messages[] = "Invalid username or password!";
+ }
+}
+if($action === "logout" && isset($_SESSION['admin'])){
+ unset($_SESSION['admin']);
+ $messages[] = "You have been logged out.";
+}
+if(isset($_SESSION['admin'])){
+ $messages[] = "Admin '{$_SESSION['admin']}' is currently logged in.";
+} else {
+ $messages[] = "No admin is logged in.";
+}
+echo "=== Admin Login/Logout Simulation ===\n";
+foreach($messages as $msg){
+ echo $msg . "\n";
+}
+?>
+output:
+Login successful! Welcome, admin.
+Admin 'admin' is currently logged in.
