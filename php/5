@@ -1,0 +1,31 @@
+5)
+<?php
+$items = [];
+for ($i = 1; $i <= 3; $i++) {
+    // You can use readline() if running interactively
+    $price = (float) readline("Enter price for item $i: ");
+    $qty = (int) readline("Enter quantity for item $i: ");    
+    $items[] = ['price' => $price, 'qty' => $qty];
+}
+$subtotal = 0;
+foreach ($items as $item) {
+    $subtotal += $item['price'] * $item['qty'];
+}
+$tax = $subtotal * 0.10;
+$total = $subtotal + $tax;
+echo "\n------ Purchase Summary ------\n";
+echo "Subtotal: Rs. " . number_format($subtotal, 2) . "\n";
+echo "Tax (10%): Rs. " . number_format($tax, 2) . "\n";
+echo "Total Cost: Rs. " . number_format($total, 2) . "\n";
+output:
+Enter price for item 1: 100
+Enter quantity for item 1: 2
+Enter price for item 2: 50
+Enter quantity for item 2: 1
+Enter price for item 3: 200
+Enter quantity for item 3: 1
+------ Purchase Summary ------
+Subtotal: Rs. 450.00
+Tax (10%): Rs. 45.00
+Total Cost: Rs. 495.00
+=== Code Execution Successful ===
