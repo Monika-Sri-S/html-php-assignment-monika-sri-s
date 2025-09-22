@@ -1,0 +1,28 @@
+94)
+<?php
+$fileContent = "";
+$fileContent = "This is written using 'w' mode.\n";
+echo "After 'w' mode:\n$fileContent\n";
+$fileContent .= "This is appended using 'a' mode.\n";
+echo "After 'a' mode:\n$fileContent\n";
+echo "Reading content (r mode simulated):\n$fileContent\n";
+$fileContent .= "Adding text using 'r+' mode.\n";
+echo "After 'r+' mode:\n$fileContent\n";
+$fileContent = "Overwriting content using 'w+' mode.\n";
+echo "After 'w+' mode:\n$fileContent\n";
+?>
+Output:
+After 'w' mode:
+This is written using 'w' mode.
+After 'a' mode:
+This is written using 'w' mode.
+This is appended using 'a' mode.
+Reading content (r mode simulated):
+This is written using 'w' mode.
+This is appended using 'a' mode.
+After 'r+' mode:
+This is written using 'w' mode.
+This is appended using 'a' mode.
+Adding text using 'r+' mode.
+After 'w+' mode:
+Overwriting content using 'w+' mode.
