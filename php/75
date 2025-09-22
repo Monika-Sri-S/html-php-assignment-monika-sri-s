@@ -1,0 +1,24 @@
+75)
+<?php
+function appendLineToFile($filename, $newLine) {
+ $fp = fopen($filename, "a+"); // a+ = read/write and append mode
+ if (!$fp) {
+ echo "Unable to open file!";
+ return;
+ }
+ fwrite($fp, $newLine . "\n");
+ rewind($fp);
+  echo "File content after appending:\n";
+ while (!feof($fp)) {
+ echo fgets($fp);
+ }
+ fclose($fp);
+$filename = "php://memory";
+$fp = fopen($filename, "w+");
+fwrite($fp, "First line in file.\n");
+fclose($fp);
+appendLineToFile($filename, "This is the appended line");
+?>
+Output:
+File content after appending:
+This is the appended line
