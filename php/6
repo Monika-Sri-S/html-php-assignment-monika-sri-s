@@ -1,0 +1,41 @@
+6)
+<?php
+session_start();
+$_SESSION['username'] = "Monika";
+setcookie("user", "Monika Sri", time() + 3600); // Set cookie (may not work in some online compilers)
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PHP Data Passing - Online Compiler Version</title>
+</head>
+<body>
+<h2>POST Method</h2>
+<form method="post">
+    Enter your name: <input type="text" name="name"><br>
+    Enter your age: <input type="number" name="age"><br>
+    <input type="submit" name="submit" value="Submit via POST">
+</form>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'] ?? 'No Name';
+    $age = $_POST['age'] ?? 'No Age';
+    echo "<h3>Received via POST:</h3>";
+    echo "Name: $name<br>";
+    echo "Age: $age<br><br>";
+}
+echo "<h3>SESSION Example:</h3>";
+echo "Username from session: " . ($_SESSION['username'] ?? 'Not Set') . "<br><br>";
+echo "<h3>COOKIE Example:</h3>";
+echo "User from cookie: " . ($_COOKIE['user'] ?? 'Not Available in Online Compiler') . "<br>";
+?>
+</body>
+</html>
+output:
+POST Method
+Enter your name: 
+Enter your age: 
+SESSION Example:
+Username from session: Monika
+COOKIE Example:
+User from cookie: Not Available in Online Compiler
