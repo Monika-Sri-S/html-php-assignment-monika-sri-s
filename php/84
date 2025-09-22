@@ -1,0 +1,33 @@
+84)
+<?php
+session_start();
+$messages = [];
+if(!isset($_SESSION['user'])){
+ $_SESSION['user'] = "JohnDoe";
+ $messages[] = "Session variable 'user' is set to 'JohnDoe'.";
+}
+if(!isset($_SESSION['role'])){
+ $_SESSION['role'] = "Admin";
+ $messages[] = "Session variable 'role' is set to 'Admin'.";
+}
+$messages[] = "Current session data:";
+foreach($_SESSION as $key => $value){
+ $messages[] = "$key => $value";
+}
+if(isset($_SESSION['role'])){
+ unset($_SESSION['role']);
+ $messages[] = "Session variable 'role' has been removed.";
+}
+echo "=== Session Demo ===\n";
+foreach($messages as $msg){
+ echo $msg . "\n";
+}
+?>
+output:
+Session variable 'user' is set to 'JohnDoe'.
+Session variable 'role' is set to 'Admin'.
+Current session data:
+user => JohnDoe
+role => Admin
+Session variable 'role' has been removed.
+
