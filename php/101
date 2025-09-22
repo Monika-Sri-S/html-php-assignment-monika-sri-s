@@ -1,0 +1,11 @@
+101)
+<?php
+setcookie("username", "JohnDoe", time() + 3600, "/");
+if(isset($_COOKIE["username"])) {
+ echo "Cookie value is: " . $_COOKIE["username"];
+} else {
+ echo "Cookie is not set yet!";
+}
+?>
+Output:
+Cookie is not set yet!
