@@ -1,0 +1,11 @@
+96)
+<?php
+session_start();
+$_SESSION['username'] = "Alice";
+$_SESSION['role'] = "Admin";
+echo "Username stored in session: " . $_SESSION['username'] . "\n";
+echo "Role stored in session: " . $_SESSION['role'] . "\n";
+?>
+Output:
+Username stored in session: Alice
+Role stored in session: Admin
