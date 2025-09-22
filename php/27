@@ -1,0 +1,20 @@
+27)
+<?php
+$a = 15;
+$b = 4;
+echo "a = $a, b = $b<br><br>";
+echo "Addition (+): " . ($a + $b) . "<br>";        
+echo "Subtraction (-): " . ($a - $b) . "<br>";    
+echo "Multiplication (*): " . ($a * $b) . "<br>"; 
+echo "Division (/): " . ($a / $b) . "<br>";  
+echo "Modulus (%): " . ($a % $b) . "<br>";        
+echo "Exponentiation (**): " . ($a ** $b) . "<br>"; 
+?>
+Output:
+a = 15, b = 4
+Addition (+): 19
+Subtraction (-): 11
+Multiplication (*): 60
+Division (/): 3.75
+Modulus (%): 3
+Exponentiation (**): 50625
