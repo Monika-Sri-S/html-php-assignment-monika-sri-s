@@ -1,0 +1,13 @@
+80)
+<?php
+$cookie_name = "TestCookie";
+$cookie_value = "HelloWorld";
+setcookie($cookie_name, $cookie_value, time() + 3600, "/");
+if(isset($_COOKIE[$cookie_name])){
+echo "Cookie '{$cookie_name}' is already set. Value: " . $_COOKIE[$cookie_name];
+} else {
+echo "Cookie '{$cookie_name}' has been created! Refresh the page to see it.";
+}
+?>
+Output:
+Cookie 'TestCookie' has been created! Refresh the page to see it.
