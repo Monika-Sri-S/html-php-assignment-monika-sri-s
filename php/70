@@ -1,0 +1,18 @@
+70)
+<?php
+$input = "10, 20, 30, 40, 50";
+$numbersArray = array_map('trim', explode(",", $input));
+echo "Stored Numbers:\n";
+print_r($numbersArray);
+?>
+Output:
+Stored Numbers:
+Array
+(
+ [0] => 10
+ [1] => 20
+ [2] => 30
+ [3] => 40
+ [4] =>50
+)
+
