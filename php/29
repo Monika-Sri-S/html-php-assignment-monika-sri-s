@@ -1,0 +1,38 @@
+29)<?php
+// 1. rand() - Random number
+echo "<h3>rand() Example:</h3>";
+echo "Random number: " . rand() . "<br>";
+echo "Random number between 1 and 10: " . rand(1, 10) . "<br><br>";
+// 2. abs() - Absolute value
+echo "<h3>abs() Example:</h3>";
+echo "Absolute of -15: " . abs(-15) . "<br>";
+echo "Absolute of 7: " . abs(7) . "<br><br>";
+// 3. str_replace() - Replace text
+echo "<h3>str_replace() Example:</h3>";
+$text = "I like apples";
+echo "Before: $text<br>";
+echo "After: " . str_replace("apples", "oranges", $text) . "<br><br>";
+// 4. pi() - Value of Pi
+echo "<h3>pi() Example:</h3>";
+echo "Value of pi: " . pi() . "<br><br>";
+// 5. ceil() - Round up
+echo "<h3>ceil() Example:</h3>";
+echo "ceil(4.3): " . ceil(4.3) . "<br>";
+echo "ceil(9.1): " . ceil(9.1) . "<br>";
+?>
+Output:
+rand() Example:
+Random number: 818021494
+Random number between 1 and 10: 9
+abs() Example:
+Absolute of -15: 15
+Absolute of 7: 7
+str_replace() Example:
+Before: I like apples
+After: I like oranges
+pi() Example:
+Value of pi: 3.1415926535898
+ceil() Example:
+ceil(4.3): 5
+ceil(9.1): 10
+
