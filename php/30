@@ -1,0 +1,17 @@
+30)
+<?php
+function generatePassword($length = 10) {   
+    $characters = 'abc+-/123';  
+    $password = '';
+    $maxIndex = strlen($characters) - 1;
+    for ($i = 0; $i < $length; $i++) {
+        $randomIndex = rand(0, $maxIndex);
+        $password .= $characters[$randomIndex];
+    }
+    return $password;
+}
+echo "Random Password: " . generatePassword(12); 
+?>
+Output:
+Random Password: /a2+/+3//cb+
+
