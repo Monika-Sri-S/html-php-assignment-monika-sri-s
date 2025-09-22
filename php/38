@@ -1,0 +1,13 @@
+38)
+<?php
+$fruits = array("Apple", "Banana", "Cherry", "Mango");
+$i = 0;
+$length = count($fruits);
+while ($i < $length) {
+ echo "Fruit at index $i: " . $fruits[$i] . "<br>";
+ $i++;
+}
+?>
+Output:
+Fruit at index 0: Apple<br>Fruit at index 1: Banana<br>Fruit at index 2: Cherry<br>Fruit 
+at index 3: Mango<br>
